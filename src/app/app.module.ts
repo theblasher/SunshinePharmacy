@@ -11,11 +11,21 @@ import {UserInfoComponent} from "./components/user-info/user-info-component";
 import {FooterComponent} from "./components/footer/footer-component";
 import {HomePageComponent} from "./components/home-page/home-page-component";
 import {CommonModule} from "@angular/common";
+import {LoginPageComponent} from "./components/login-page/login-page.component";
+import {MatCardModule} from "@angular/material/card";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {RegisterPageComponent} from "./components/register-page/register-page.component";
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'medications', component: MedicationsComponent},
-  {path: 'userinfo', component: UserInfoComponent}
+  {path: 'userinfo', component: UserInfoComponent},
+  {path: 'login', component: LoginPageComponent},
+  {path: 'register', component: RegisterPageComponent}
 ];
 
 @NgModule({
@@ -25,14 +35,22 @@ const routes: Routes = [
     MedicationsComponent,
     UserInfoComponent,
     FooterComponent,
-    HomePageComponent
+    HomePageComponent,
+    LoginPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     CommonModule,
     MatTabsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

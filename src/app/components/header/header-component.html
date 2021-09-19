@@ -1,8 +1,8 @@
 <div>
   <h1>Sunshine Pharmacy</h1>
-  <p>Login</p>
-
-<nav style="position: center" mat-tab-nav-bar
+  <a [routerLink]="login.path">Login</a>
+</div>
+<nav mat-tab-nav-bar
      mat-align-tabs="center">
   <a mat-tab-link
      *ngFor="let link of link"
@@ -12,5 +12,4 @@
     {{link.label}}
   </a>
 </nav>
-</div>
 

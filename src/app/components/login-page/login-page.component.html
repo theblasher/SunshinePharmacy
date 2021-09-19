@@ -1,0 +1,24 @@
+ <mat-card-title>Login</mat-card-title>
+
+ <p>
+   <mat-form-field appearance="fill">
+     <mat-label>Username</mat-label>
+     <input matInput placeholder="Username">
+     <mat-hint>Enter Username Here!</mat-hint>
+   </mat-form-field>
+ </p>
+ <p>
+   <mat-form-field appearance="fill">
+     <mat-label>Password</mat-label>
+     <input matInput placeholder="Password">
+     <mat-hint>Enter Password Here!</mat-hint>
+   </mat-form-field>
+ </p>
+
+ <div class="button">
+        <button type="submit" color="primary" mat-button>
+          Login
+        </button>
+ </div>
+
+ <a [routerLink]="register.path">{{registerMessage}}</a>

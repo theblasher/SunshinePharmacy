@@ -9,8 +9,10 @@ export class HeaderComponent {
   link = [
     {path: '/home', label: 'Home'},
     {path: '/medications', label: 'Medications'},
-    {path: '/userinfo', label: 'User Info'},
+    {path: '/userinfo', label: 'User Info'}
   ];
+  login = {path: '/login', label: 'Login'};
+
   homePage = "Home"
   userInfo = 'User Info';
   medications = 'Medications';

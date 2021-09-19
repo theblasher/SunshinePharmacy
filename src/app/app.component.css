@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header-component {
+  background-color: #4984b8;
+  color: white;
+}
+
+div.content {
+  flex: 1;
+  text-align: center;
+}
+
+footer-component {
+  background-color: #4984b8;
+  color: white;
+  text-align: center;
+}

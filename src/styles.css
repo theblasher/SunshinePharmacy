@@ -5,6 +5,12 @@
 */
 @import 'https://fonts.googleapis.com/css?family=Material+Icons';
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .mat-badge-content {
   font-weight: 600;
   font-size: 12px; }
@@ -1899,7 +1905,7 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
   background-color: rgba(200, 218, 234, 0.3); }
 
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  background-color: #4984b8; }
+  background-color: white; }
 
 .mat-tab-group.mat-primary.mat-background-primary > .mat-tab-header .mat-ink-bar, .mat-tab-group.mat-primary.mat-background-primary > .mat-tab-link-container .mat-ink-bar, .mat-tab-nav-bar.mat-primary.mat-background-primary > .mat-tab-header .mat-ink-bar, .mat-tab-nav-bar.mat-primary.mat-background-primary > .mat-tab-link-container .mat-ink-bar {
   background-color: white; }
