@@ -1,1 +1,56 @@
-<p>Register Works!</p>
+<h1>Registration</h1>
+<form [formGroup]="registration">
+  <p>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput [formControl]="firstName">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput [formControl]="lastName">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]="email">
+      <mat-error *ngIf="email.invalid">{{errorMessage()}}</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="dateOfBirth">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput type="date" [formControl]="dateOfBirth">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput [formControl]="userName">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [formControl]="password">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Re-enter Password</mat-label>
+      <input matInput type="password" [formControl]="reEnterPassword">
+    </mat-form-field>
+  </p>
+</form>
+
+<div class="button">
+  <button type="submit" color="primary" mat-button (click)="onSubmit()">
+    Confirm
+  </button>
+  <button type="submit" color="primary" mat-button>
+    Cancel
+  </button>
+</div>
+

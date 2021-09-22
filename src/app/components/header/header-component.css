@@ -2,8 +2,9 @@ nav  {
   background: #4984b8;
 }
 
-nav a {
+a {
   color: white;
+  text-decoration: white;
 }
 
 div {
