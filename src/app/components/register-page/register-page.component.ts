@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: './register-page.component.html',
@@ -16,7 +17,8 @@ export class RegisterPageComponent {
   reEnterPassword =  new FormControl('', Validators.required);
 
 
-  constructor(fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private router: Router) {
     this.registration = fb.group({
       firstName: this.firstName,
       lastName: this.lastName,
@@ -33,6 +35,10 @@ export class RegisterPageComponent {
       let registrationInfo = this.registration.value;
     }
     return "This needs to go to backend database";
+  }
+
+  onCancel(){
+    this.router.navigateByUrl("/login")
   }
 
   errorMessage(){
