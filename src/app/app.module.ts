@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HeaderComponent} from "./components/header/header-component";
 import {MatTabsModule} from "@angular/material/tabs";
 import {RouterModule, Routes} from "@angular/router";
-import {MedicationsComponent} from "./components/medications/medications-component";
+import {MedicationsComponent} from "./components/medications/medications.component";
 import {UserInfoComponent} from "./components/user-info/user-info-component";
 import {FooterComponent} from "./components/footer/footer-component";
 import {HomePageComponent} from "./components/home-page/home-page-component";
@@ -21,8 +21,16 @@ import {MatIconModule} from "@angular/material/icon";
 import {RegisterPageComponent} from "./components/register-page/register-page.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {TableComponent} from "./components/table/table.component";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {InMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryDataService} from "./services/in-memory-data.service";
+import {ProfileService} from "./services/profile.service";
+import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
   {path: 'home', component: HomePageComponent},
   {path: 'medications', component: MedicationsComponent},
   {path: 'userinfo', component: UserInfoComponent},
@@ -39,7 +47,8 @@ const routes: Routes = [
     FooterComponent,
     HomePageComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +63,11 @@ const routes: Routes = [
     MatInputModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
