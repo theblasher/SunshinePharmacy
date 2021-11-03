@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {Profile} from "../models/profile";
 
 @Injectable({
@@ -7,7 +7,7 @@ import {Profile} from "../models/profile";
 })
 export class ProfileService {
 
-  SERVER_URL: string = "http://localhost:8080/api/";
+  SERVER_URL: string = "http://47.197.115.239/view.php";
   constructor(private httpClient: HttpClient) { }
 
   public getProfiles(){

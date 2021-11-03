@@ -1,0 +1,22 @@
+export interface Medications {
+  ProductID: string,
+  ProductNDC: string,
+  ProductTypeName: string,
+  ProprietaryName: string,
+  ProprietaryNameSuffix: string,
+  DosageFormName: string,
+  RouteName: string,
+  StartMarketingDate: number,
+  EndMarketingDate: number,
+  MarketingCategoryName: string,
+  ApplicationNumber: string,
+  LabelerName: string,
+  SubstanceName: string,
+  Active_Numerator_Strength: number,
+  Active_Ingred_Unit: string,
+  Pharm_Classes: string,
+  DeaSchedule: string,
+  NDC_Exclude_Flag: string,
+  Listing_Record_Certified_Through: string,
+  NonProprietaryName: string
+}
