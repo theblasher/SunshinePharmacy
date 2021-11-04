@@ -8,23 +8,27 @@ import {Profile} from "../models/profile";
 export class ProfileService {
 
   SERVER_URL: string = "http://47.197.115.239/view.php";
-  constructor(private httpClient: HttpClient) { }
 
-  public getProfiles(){
+  constructor(private httpClient: HttpClient) {
+  }
+
+  public getProfiles() {
     return this.httpClient.get(this.SERVER_URL + 'profiles');
   }
 
-  public getProfile(profileId: number){
+  public getProfile(profileId: number) {
     return this.httpClient.get(`${this.SERVER_URL + 'profiles'}/${profileId}`);
   }
-  public createProfile(profile: Profile){
+
+  public createProfile(profile: Profile) {
     return this.httpClient.post(`${this.SERVER_URL + 'profiles'}`, profile)
   }
 
-  public deleteProfile(profileId: number){
+  public deleteProfile(profileId: number) {
     return this.httpClient.delete(`${this.SERVER_URL + 'profiles'}/${profileId}`)
   }
-  public updateProfile(profile: Profile){
+
+  public updateProfile(profile: Profile) {
     return this.httpClient.put(`${this.SERVER_URL + 'profiles'}/${profile.id}`, profile)
   }
 

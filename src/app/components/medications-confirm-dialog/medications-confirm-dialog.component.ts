@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MedicationsService} from "../../services/medications.service";
@@ -6,9 +6,10 @@ import {CheckoutDialogComponent} from "../checkout-dialog/checkout-dialog.compon
 
 @Component({
   selector: 'medications-confirm-component',
-  templateUrl: './medications-confirm-dialog.component.html'
+  templateUrl: './medications-confirm-dialog.component.html',
+  styleUrls: ['./medications-confirm-dialog.component.css']
 })
-export class MedicationsConfirmDialogComponent implements OnInit{
+export class MedicationsConfirmDialogComponent implements OnInit {
   medicationConfirmName!: string;
   color = "primary";
   confirmationForm!: FormGroup;
@@ -25,13 +26,13 @@ export class MedicationsConfirmDialogComponent implements OnInit{
     this.confirmationForm = this.formBuilder.group({
       type: new FormControl('', Validators.required),
       prescriberLastName: new FormControl('', Validators.required),
-      officeNumber: new FormControl('',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")])
+      officeNumber: new FormControl('', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")])
     });
 
     this.medicationConfirmName = this.medService.medicationConfirm.SubstanceName;
   }
 
-  onSubmit(){
+  onSubmit() {
     console.warn('Your order has been submitted', this.confirmationForm.value);
     this.medService.saveMedConfirmation(this.confirmationForm.value);
     this.confirmationForm.reset();
@@ -41,7 +42,7 @@ export class MedicationsConfirmDialogComponent implements OnInit{
     this.matDialog.open(CheckoutDialogComponent);
   }
 
-  onCancel(){
+  onCancel() {
     this.dialogRef.close();
   }
 

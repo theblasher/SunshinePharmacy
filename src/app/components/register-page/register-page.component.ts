@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {Profile} from "../../models/profile";
 import {ProfileService} from "../../services/profile.service";
 
 @Component({
@@ -17,7 +16,7 @@ export class RegisterPageComponent {
     dateOfBirth: new FormControl('', Validators.required),
     userName: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    reEnterPassword:  new FormControl('', Validators.required)
+    reEnterPassword: new FormControl('', Validators.required)
   });
 
 
@@ -26,21 +25,20 @@ export class RegisterPageComponent {
               private profileService: ProfileService) {
   }
 
-  onSubmit(){
-    if (this.registrationForm.value.password == this.registrationForm.value.reEnterPassword){
+  onSubmit() {
+    if (this.registrationForm.value.password == this.registrationForm.value.reEnterPassword) {
       console.warn('Your order has been submitted', this.registrationForm.value);
     }
   }
 
-  onCancel(){
+  onCancel() {
     this.router.navigateByUrl("/login");
   }
 
-  errorMessage(){
-    if (this.registrationForm.hasError('email')){
+  errorMessage() {
+    if (this.registrationForm.hasError('email')) {
       return "This is not a valid email";
-    }
-    else {
+    } else {
       return "An email is required"
     }
   }

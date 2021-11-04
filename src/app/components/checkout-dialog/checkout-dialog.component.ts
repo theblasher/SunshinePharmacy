@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MedicationsService} from "../../services/medications.service";
+import {OrderConfirmDialogComponent} from "../order-confirm-dialog/order-confirm-dialog.component";
 
 @Component({
   selector: 'medications-confirm-component',
   templateUrl: './checkout-dialog.component.html',
-  styleUrls: ['checkout-dialog.component.css']
+  styleUrls: ['./checkout-dialog.component.css']
 })
-export class CheckoutDialogComponent implements OnInit{
+export class CheckoutDialogComponent implements OnInit {
   medicationConfirmName!: string;
   color = "primary";
 
@@ -81,7 +82,8 @@ export class CheckoutDialogComponent implements OnInit{
 
   constructor(private dialogRef: MatDialogRef<CheckoutDialogComponent>,
               private formBuilder: FormBuilder,
-              private medService: MedicationsService) {
+              private medService: MedicationsService,
+              private matDialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -89,12 +91,17 @@ export class CheckoutDialogComponent implements OnInit{
     this.medicationType = this.medService.medicationInformation.type;
   }
 
-  onSubmit(){
+  onSubmit() {
     console.warn('Your order has been submitted', this.checkoutConfirmationForm.value);
+    this.medService.saveOrderConfirmation(this.checkoutConfirmationForm.value);
+    this.checkoutConfirmationForm.reset();
+
     this.dialogRef.close();
+
+    this.matDialog.open(OrderConfirmDialogComponent);
   }
 
-  onCancel(){
+  onCancel() {
     this.dialogRef.close();
   }
 

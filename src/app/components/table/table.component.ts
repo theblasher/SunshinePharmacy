@@ -22,23 +22,21 @@ export class TableComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.paginator){
+    if (this.paginator) {
       this.dataSource.paginator = this.paginator;
-    }
-    else {
+    } else {
       return;
     }
 
-    if (this.sort){
+    if (this.sort) {
       this.dataSource.sort = this.sort;
-    }
-    else {
+    } else {
       return;
     }
   }
 
-  applyFilter(event: Event){
-    if ((event.target as HTMLInputElement).value == null){
+  applyFilter(event: Event) {
+    if ((event.target as HTMLInputElement).value == null) {
       return;
     }
 
@@ -46,12 +44,12 @@ export class TableComponent implements AfterViewInit {
 
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator){
+    if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-  onClick(element: Medications){
+  onClick(element: Medications) {
     this.medService.openConfirmationDialog(element);
   }
 

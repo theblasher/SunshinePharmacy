@@ -1,0 +1,13 @@
+<mat-card-title mat-dialog-title>{{orderConfirmMessage}}</mat-card-title>
+<mat-dialog-content align="center">
+  <p>Name: {{patient}}</p>
+  <p>Medication: {{medicationName}}</p>
+  <p>Card Number: {{cardNum}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button type="submit" color="primary" mat-button
+          (click)="onSubmit()">
+    Close
+  </button>
+</mat-dialog-actions>

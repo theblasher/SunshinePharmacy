@@ -1,102 +1,92 @@
 <mat-card-title mat-dialog-title>Checkout</mat-card-title>
-<mat-dialog-content [formGroup]="checkoutConfirmationForm">
-  <p>
-    <mat-form-field appearance="fill">
-      <mat-label>Medication</mat-label>
-      <input type="text"
-             aria-label="Medication"
-             matInput
-             id="medication"
-             formControlName="medication"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option [value]="medicationConfirmName">
-          {{medicationConfirmName}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="fill">
-      <mat-label>New/Refill</mat-label>
-      <input type="text"
-             aria-label="New/Refill"
-             matInput
-             id="type"
-             formControlName="type"
-             [matAutocomplete]="auto1">
-      <mat-autocomplete #auto1="matAutocomplete">
-        <mat-option [value]="medicationType">
-          {{medicationType}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </p>
+<mat-dialog-content [formGroup]="checkoutConfirmationForm" align="center">
 
-  <p>
-    <mat-form-field appearance="fill">
-      <mat-label>Street Address</mat-label>
-      <input id="streetAddress"
-             formControlName="streetAddress" matInput placeholder="Street Address">
-    </mat-form-field>
-  </p>
+  <mat-form-field appearance="fill">
+    <mat-label>Medication</mat-label>
+    <input type="text"
+           aria-label="Medication"
+           matInput
+           id="medication"
+           formControlName="medication"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option [value]="medicationConfirmName">
+        {{medicationConfirmName}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 
-  <p>
-    <mat-form-field appearance="fill">
-      <mat-label>City</mat-label>
-      <input id="city"
-             formControlName="city" matInput placeholder="City">
-    </mat-form-field>
-  </p>
 
-  <p>
-    <mat-form-field appearance="fill">
-      <mat-label>State</mat-label>
-      <mat-select id="state"
-                  formControlName="state">
-        <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </p>
+  <mat-form-field appearance="fill">
+    <mat-label>New/Refill</mat-label>
+    <input type="text"
+           aria-label="New/Refill"
+           matInput
+           id="type"
+           formControlName="type"
+           [matAutocomplete]="auto1">
+    <mat-autocomplete #auto1="matAutocomplete">
+      <mat-option [value]="medicationType">
+        {{medicationType}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 
-  <p>
-    <mat-form-field appearance="fill">
-      <mat-label>Zip Code</mat-label>
-      <input id="zipCode"
-             formControlName="zipCode" matInput placeholder="Zip Code" maxlength="5">
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field appearance="fill">
-      <mat-label>Card Number</mat-label>
-      <input id="cardNum"
-             formControlName="cardNum" matInput placeholder="Card Number" maxlength="16">
-    </mat-form-field>
-  </p>
 
-  <p>
+  <mat-form-field appearance="fill">
+    <mat-label>Street Address</mat-label>
+    <input id="streetAddress"
+           formControlName="streetAddress" matInput placeholder="Street Address">
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Expiration Date</mat-label>
-      <input id="expirationDate"
-             formControlName="expirationDate" matInput placeholder="Expiration Date">
-    </mat-form-field>
 
-  </p>
-  <p>
+  <mat-form-field appearance="fill">
+    <mat-label>City</mat-label>
+    <input id="city"
+           formControlName="city" matInput placeholder="City">
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>CVV</mat-label>
-      <input id="pin"
-             formControlName="cvv" matInput placeholder="cvv" maxlength="3">
-    </mat-form-field>
 
-  </p>
+  <mat-form-field appearance="fill">
+    <mat-label>State</mat-label>
+    <mat-select id="state"
+                formControlName="state">
+      <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Zip Code</mat-label>
+    <input id="zipCode"
+           formControlName="zipCode" matInput placeholder="Zip Code" maxlength="5">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Card Number</mat-label>
+    <input id="cardNum"
+           formControlName="cardNum" matInput placeholder="Card Number" maxlength="16">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Expiration Date</mat-label>
+    <input id="expirationDate"
+           formControlName="expirationDate" matInput placeholder="Expiration Date">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>CVV</mat-label>
+    <input id="pin"
+           formControlName="cvv" matInput placeholder="cvv" maxlength="3">
+  </mat-form-field>
 
 
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<mat-dialog-actions align="center">
   <button type="submit" color="primary" mat-button (click)="onSubmit()" [disabled]="!checkoutConfirmationForm.valid">
     Checkout
   </button>

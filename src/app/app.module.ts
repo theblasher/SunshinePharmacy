@@ -33,9 +33,10 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {CheckoutDialogComponent} from "./components/checkout-dialog/checkout-dialog.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {NgxCcModule} from "ngx-cc";
+import {OrderConfirmDialogComponent} from "./components/order-confirm-dialog/order-confirm-dialog.component";
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomePageComponent},
   {path: 'medications', component: MedicationsComponent},
   {path: 'userinfo', component: UserInfoComponent},
@@ -55,33 +56,35 @@ const routes: Routes = [
     RegisterPageComponent,
     TableComponent,
     MedicationsConfirmDialogComponent,
-    CheckoutDialogComponent
+    CheckoutDialogComponent,
+    OrderConfirmDialogComponent
   ],
-    imports: [
-        CommonModule,
-        MatTabsModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        RouterModule.forRoot(routes),
-        MatCardModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatInputModule,
-        MatIconModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatTableModule,
-        MatPaginatorModule,
-        HttpClientModule,
-        MatSortModule,
-        MatCheckboxModule,
-        MatSelectModule,
-        MatDialogModule,
-        MatAutocompleteModule,
-        NgxCcModule
-    ],
+  imports: [
+    CommonModule,
+    MatTabsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    HttpClientModule,
+    MatSortModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+    NgxCcModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

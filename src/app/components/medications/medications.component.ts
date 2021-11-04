@@ -10,7 +10,7 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class MedicationsComponent implements OnInit {
   medications!: Medications[];
-  tableData =  new MatTableDataSource<any>([]);
+  tableData = new MatTableDataSource<any>([]);
 
   displayedColumnsTitles = [
     "Select?",

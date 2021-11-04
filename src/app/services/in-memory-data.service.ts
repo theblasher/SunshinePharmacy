@@ -5,13 +5,23 @@ import {Profile} from "../models/profile";
 @Injectable({
   providedIn: 'root'
 })
-export class InMemoryDataService implements InMemoryDbService{
+export class InMemoryDataService implements InMemoryDbService {
 
-  constructor() { }
-  createDb(){
+  constructor() {
+  }
 
-    let  profiles: Profile[] =  [
-      {id: 1, firstName: "Brian", lastName: "Lasher", email: "brian.lasher17@gmail.com", dateOfBirth: "01/09/2000", username: "theblasher", password: "beans"}
+  createDb() {
+
+    let profiles: Profile[] = [
+      {
+        id: 1,
+        firstName: "Brian",
+        lastName: "Lasher",
+        email: "brian.lasher17@gmail.com",
+        dateOfBirth: "01/09/2000",
+        username: "theblasher",
+        password: "beans"
+      }
     ];
 
     return {profiles};

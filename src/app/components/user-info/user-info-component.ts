@@ -15,7 +15,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.policyService.getProfiles().subscribe(data =>{
+    this.policyService.getProfiles().subscribe(data => {
       console.log(data);
       this.profiles = data;
     })

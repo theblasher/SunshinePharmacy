@@ -19,6 +19,7 @@ mat-table {
 mat-row, mat-header-row {
   display: table-row;
 }
+
 mat-header-cell {
   color: black;
 }
