@@ -66,21 +66,30 @@
   <mat-form-field appearance="fill">
     <mat-label>Card Number</mat-label>
     <input id="cardNum"
-           formControlName="cardNum" matInput placeholder="Card Number" maxlength="16">
+           formControlName="cardNum"
+           matInput
+           placeholder="Card Number"
+           maxlength="16">
   </mat-form-field>
 
 
   <mat-form-field appearance="fill">
     <mat-label>Expiration Date</mat-label>
     <input id="expirationDate"
-           formControlName="expirationDate" matInput placeholder="Expiration Date">
+           type="month"
+           formControlName="expirationDate"
+           matInput
+           placeholder="Expiration Date">
   </mat-form-field>
 
 
   <mat-form-field appearance="fill">
     <mat-label>CVV</mat-label>
     <input id="pin"
-           formControlName="cvv" matInput placeholder="cvv" maxlength="3">
+           formControlName="cvv"
+           matInput
+           placeholder="cvv"
+           maxlength="3">
   </mat-form-field>
 
 

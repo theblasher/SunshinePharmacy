@@ -72,10 +72,10 @@ export class CheckoutDialogComponent implements OnInit {
     streetAddress: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
-    zipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
-    cardNum: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
+    zipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(5)]),
+    cardNum: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(16)]),
     expirationDate: new FormControl('', Validators.required),
-    cvv: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")])
+    cvv: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(3)])
   });
 
   medicationType !: string;
