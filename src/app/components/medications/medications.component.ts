@@ -13,6 +13,7 @@ export class MedicationsComponent implements OnInit {
   tableData =  new MatTableDataSource<any>([]);
 
   displayedColumnsTitles = [
+    "Select?",
     "Product ID",
     "Product NDC",
     "Product Type Name",
@@ -24,7 +25,7 @@ export class MedicationsComponent implements OnInit {
     "Start Marketing Date",
     "End Marketing Date",
     "Marketing Category Name",
-    "Application NUmber",
+    "Application Number",
     "Labeler Name",
     "Substance Name",
     "Active Numerator Strength",
@@ -36,6 +37,7 @@ export class MedicationsComponent implements OnInit {
   ];
 
   displayedColumns = [
+    "Select",
     "ProductID",
     "ProductNDC",
     "ProductTypeName",

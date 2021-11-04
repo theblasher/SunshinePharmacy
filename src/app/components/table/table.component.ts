@@ -2,6 +2,8 @@ import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from "@angular/material/sort";
+import {Medications} from "../../models/medications";
+import {MedicationsService} from "../../services/medications.service";
 
 @Component({
   selector: 'table-component',
@@ -15,6 +17,9 @@ export class TableComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort ?: MatSort;
+
+  constructor(private medService: MedicationsService) {
+  }
 
   ngAfterViewInit() {
     if (this.paginator){
@@ -44,6 +49,10 @@ export class TableComponent implements AfterViewInit {
     if (this.dataSource.paginator){
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  onClick(element: Medications){
+    this.medService.openConfirmationPage(element);
   }
 
 }

@@ -1,0 +1,43 @@
+<div class="page">
+    <mat-card-title>{{medicationConfirmName}}</mat-card-title>
+  <form [formGroup]="confirmationForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>New or Refill? </mat-label>
+      <mat-select id="type"
+                  formControlName="type">
+        <mat-option *ngFor="let choice of choices"
+                    [value]="choice">
+          {{choice}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Prescriber Last Name</mat-label>
+        <input id="prescriberLastName"
+               formControlName="prescriberLastName" matInput placeholder="Prescriber Last Name">
+        <mat-hint>Enter Prescriber Last Name!</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Office Phone Number</mat-label>
+        <input id="officeNumber"
+              formControlName="officeNumber" matInput placeholder="Dr. Phone #">
+        <mat-hint>Enter Office Phone # Here!</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <div class="button">
+        <button type="submit" color="primary" mat-button>
+          Checkout
+        </button>
+      <button type="submit" color="primary" mat-button (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

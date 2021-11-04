@@ -1,56 +1,56 @@
 <h1>Registration</h1>
-<form [formGroup]="registration">
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
   <p>
     <mat-form-field>
       <mat-label>First Name</mat-label>
-      <input matInput [formControl]="firstName">
+      <input matInput id="firstName" formControlName="firstName">
     </mat-form-field>
   </p>
   <p>
     <mat-form-field>
       <mat-label>Last Name</mat-label>
-      <input matInput [formControl]="lastName">
+      <input matInput id="lastName" formControlName="lastName">
     </mat-form-field>
   </p>
   <p>
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput [formControl]="email">
-      <mat-error *ngIf="email.invalid">{{errorMessage()}}</mat-error>
+      <input matInput type="email" id="email" formControlName="email">
+      <mat-error *ngIf="registrationForm.value.email">{{errorMessage()}}</mat-error>
     </mat-form-field>
   </p>
   <p>
     <mat-form-field class="dateOfBirth">
       <mat-label>Date of Birth</mat-label>
-      <input matInput type="date" [formControl]="dateOfBirth">
+      <input matInput type="date" id="dateOfBirth" formControlName="dateOfBirth">
     </mat-form-field>
   </p>
   <p>
     <mat-form-field>
       <mat-label>Username</mat-label>
-      <input matInput [formControl]="userName">
+      <input matInput id="userName" formControlName="userName">
     </mat-form-field>
   </p>
   <p>
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input matInput type="password" [formControl]="password">
+      <input matInput type="password" id="password" formControlName="password">
     </mat-form-field>
   </p>
   <p>
     <mat-form-field>
       <mat-label>Re-enter Password</mat-label>
-      <input matInput type="password" [formControl]="reEnterPassword">
+      <input matInput type="password" id="reEnterPassword" formControlName="reEnterPassword">
     </mat-form-field>
   </p>
-</form>
 
 <div class="button">
-  <button type="submit" color="primary" mat-button (click)="onSubmit()">
+  <button type="submit" color="primary" mat-button>
     Confirm
   </button>
   <button type="submit" color="primary" mat-button (click)="onCancel()">
     Cancel
   </button>
 </div>
+</form>
 

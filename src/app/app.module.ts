@@ -26,6 +26,9 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSortModule} from "@angular/material/sort";
+import {MedicationsConfirmationComponent} from "./components/medications-confirmation/medications-confirmation.component";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -33,7 +36,8 @@ const routes: Routes = [
   {path: 'medications', component: MedicationsComponent},
   {path: 'userinfo', component: UserInfoComponent},
   {path: 'login', component: LoginPageComponent},
-  {path: 'register', component: RegisterPageComponent}
+  {path: 'register', component: RegisterPageComponent},
+  {path: 'medConfirmation', component: MedicationsConfirmationComponent}
 ];
 
 @NgModule({
@@ -46,28 +50,30 @@ const routes: Routes = [
     HomePageComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    TableComponent
+    TableComponent,
+    MedicationsConfirmationComponent
   ],
-    imports: [
-        CommonModule,
-        MatTabsModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        RouterModule.forRoot(routes),
-        MatCardModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatInputModule,
-        MatIconModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatTableModule,
-        MatPaginatorModule,
-        // InMemoryWebApiModule.forRoot(InMemoryDataService),
-        HttpClientModule,
-        MatSortModule
-    ],
+  imports: [
+    CommonModule,
+    MatTabsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    HttpClientModule,
+    MatSortModule,
+    MatCheckboxModule,
+    MatSelectModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

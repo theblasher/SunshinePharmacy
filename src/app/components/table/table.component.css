@@ -37,3 +37,7 @@ mat-cell, mat-header-cell {
 .mat-column {
   border-right: 1px black;
 }
+
+mat-icon {
+  cursor: pointer;
+}

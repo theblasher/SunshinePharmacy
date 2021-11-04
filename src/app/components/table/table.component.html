@@ -15,11 +15,17 @@
         *matHeaderCellDef>
         {{displayedColumnTitles[i]}}
       </mat-header-cell>
-
       <mat-cell
         *matCellDef="let element">
-        {{element[column]}}
+        <mat-icon *ngIf="displayedColumnTitles[i] == 'Select?'; else elseBlock"
+                  (click)="onClick(element)">
+          check_circle
+        </mat-icon>
+        <ng-template #elseBlock>
+          {{element[column]}}
+        </ng-template>
       </mat-cell>
+
     </ng-container>
 
 
