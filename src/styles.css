@@ -134,6 +134,7 @@ html, body {
   font-weight: 400; }
 
 .mat-dialog-title {
+  text-align: center;
   font: 500 20px/32px Roboto;
   letter-spacing: 0.0075em; }
 

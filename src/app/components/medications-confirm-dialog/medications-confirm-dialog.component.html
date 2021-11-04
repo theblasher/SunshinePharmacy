@@ -1,0 +1,42 @@
+<mat-card-title mat-dialog-title>{{medicationConfirmName}}</mat-card-title>
+<mat-dialog-content [formGroup]="confirmationForm">
+
+  <mat-form-field appearance="fill">
+    <mat-label>New or Refill?</mat-label>
+    <mat-select id="type"
+                formControlName="type">
+      <mat-option *ngFor="let choice of choices"
+                  [value]="choice">
+        {{choice}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Prescriber Last Name</mat-label>
+      <input id="prescriberLastName"
+             formControlName="prescriberLastName" matInput>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Office Phone Number</mat-label>
+      <input id="officeNumber"
+             formControlName="officeNumber" matInput>
+      <mat-hint>10 Digit Office Phone Num.</mat-hint>
+    </mat-form-field>
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button type="submit" color="primary" mat-button
+          (click)="onSubmit()"
+          [disabled]="!confirmationForm.valid">
+    Checkout
+  </button>
+  <button mat-button color="primary" type="button" (click)="onCancel()">
+    Cancel
+  </button>
+</mat-dialog-actions>

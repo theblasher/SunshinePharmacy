@@ -26,9 +26,13 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSortModule} from "@angular/material/sort";
-import {MedicationsConfirmationComponent} from "./components/medications-confirmation/medications-confirmation.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
+import {MedicationsConfirmDialogComponent} from "./components/medications-confirm-dialog/medications-confirm-dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {CheckoutDialogComponent} from "./components/checkout-dialog/checkout-dialog.component";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {NgxCcModule} from "ngx-cc";
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -36,8 +40,7 @@ const routes: Routes = [
   {path: 'medications', component: MedicationsComponent},
   {path: 'userinfo', component: UserInfoComponent},
   {path: 'login', component: LoginPageComponent},
-  {path: 'register', component: RegisterPageComponent},
-  {path: 'medConfirmation', component: MedicationsConfirmationComponent}
+  {path: 'register', component: RegisterPageComponent}
 ];
 
 @NgModule({
@@ -51,29 +54,33 @@ const routes: Routes = [
     LoginPageComponent,
     RegisterPageComponent,
     TableComponent,
-    MedicationsConfirmationComponent
+    MedicationsConfirmDialogComponent,
+    CheckoutDialogComponent
   ],
-  imports: [
-    CommonModule,
-    MatTabsModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
-    MatCardModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatIconModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatTableModule,
-    MatPaginatorModule,
-    HttpClientModule,
-    MatSortModule,
-    MatCheckboxModule,
-    MatSelectModule
-  ],
+    imports: [
+        CommonModule,
+        MatTabsModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(routes),
+        MatCardModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatInputModule,
+        MatIconModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatTableModule,
+        MatPaginatorModule,
+        HttpClientModule,
+        MatSortModule,
+        MatCheckboxModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatAutocompleteModule,
+        NgxCcModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

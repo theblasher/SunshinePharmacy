@@ -52,7 +52,7 @@ export class TableComponent implements AfterViewInit {
   }
 
   onClick(element: Medications){
-    this.medService.openConfirmationPage(element);
+    this.medService.openConfirmationDialog(element);
   }
 
 }
