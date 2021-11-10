@@ -34,6 +34,7 @@ import {CheckoutDialogComponent} from "./components/checkout-dialog/checkout-dia
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {NgxCcModule} from "ngx-cc";
 import {OrderConfirmDialogComponent} from "./components/order-confirm-dialog/order-confirm-dialog.component";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -81,7 +82,8 @@ const routes: Routes = [
     MatSelectModule,
     MatDialogModule,
     MatAutocompleteModule,
-    NgxCcModule
+    NgxCcModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

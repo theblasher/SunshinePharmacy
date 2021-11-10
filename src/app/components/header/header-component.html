@@ -2,8 +2,9 @@
   <h1>Sunshine Pharmacy</h1>
   <button type="submit"
           [routerLink]="login.path"
-          mat-button>
-    Login
+          mat-button
+          *ngIf="">
+    {{login.label}}
   </button>
 </div>
 <nav mat-tab-nav-bar

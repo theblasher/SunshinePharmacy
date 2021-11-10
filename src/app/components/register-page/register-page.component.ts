@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ProfileService} from "../../services/profile.service";
+import {RegisterService} from "../../services/register.service";
 
 @Component({
   templateUrl: './register-page.component.html',
@@ -22,13 +23,27 @@ export class RegisterPageComponent {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private profileService: ProfileService) {
+              private registerService: RegisterService) {
   }
 
-  onSubmit() {
+  async saveData(values: any){
+      const productData = new FormData();
+      productData.append('firstName', values.firstName);
+      productData.append('lastName', values.lastName);
+      productData.append('email', values.email);
+      productData.append('dateOfBirth', values.dateOfBirth);
+      productData.append('userName', values.userName);
+      productData.append('password', values.password);
+
+      await this.registerService.registerProfile(productData);
+  }
+
+  async onSubmit() {
     if (this.registrationForm.value.password == this.registrationForm.value.reEnterPassword) {
       console.warn('Your order has been submitted', this.registrationForm.value);
+      await this.saveData(this.registrationForm.value)
     }
+
   }
 
   onCancel() {
