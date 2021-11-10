@@ -3,8 +3,15 @@
   <button type="submit"
           [routerLink]="login.path"
           mat-button
-          *ngIf="">
+          *ngIf="!loggedIn">
     {{login.label}}
+  </button>
+  <button type="submit"
+          [routerLink]="logout.path"
+          mat-button
+          *ngIf="loggedIn"
+          (click)="logoutFunction()">
+    {{logout.label}}
   </button>
 </div>
 <nav mat-tab-nav-bar

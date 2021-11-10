@@ -46,8 +46,8 @@ export class RegisterPageComponent {
 
   }
 
-  onCancel() {
-    this.router.navigateByUrl("/login");
+  async onCancel() {
+    await this.router.navigateByUrl("/login");
   }
 
   errorMessage() {

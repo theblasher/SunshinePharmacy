@@ -1,15 +1,21 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthenticationService} from "../../services/authentication.service";
+import {Subscription} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'header-component',
   templateUrl: './header-component.html',
   styleUrls: ['./header-component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-  constructor(){
+  constructor(private authService: AuthenticationService,
+              private snackbar: MatSnackBar){
 
   }
+  private watchLoginStatusSub!: Subscription;
+  loggedIn = false;
   link = [
     {path: '/home', label: 'Home'},
     {path: '/medications', label: 'Medications'},
@@ -23,6 +29,21 @@ export class HeaderComponent implements OnInit {
   medications = 'Medications';
 
   ngOnInit(){
-    console.log("brian");
+    this.watchLoginStatusSub =this.authService.getLoginStatus().subscribe(isLoggedIn => {
+      this.loggedIn = isLoggedIn;
+    });
+  }
+
+  logoutFunction(){
+    this.authService.watchLoginStatus.next(false);
+    this.openSnackBarLogout();
+  }
+
+  public openSnackBarLogout(){
+    this.snackbar.open("You have logged out", "OK");
+  }
+
+  ngOnDestroy() {
+    this.watchLoginStatusSub.unsubscribe();
   }
 }

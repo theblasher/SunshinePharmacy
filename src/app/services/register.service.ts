@@ -15,6 +15,7 @@ export class RegisterService{
               private snackbar: MatSnackBar,
               private router: Router,
               private authService: AuthenticationService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false }
   }
 
   public async registerProfile(registerForm: FormData) {
@@ -26,8 +27,9 @@ export class RegisterService{
         this.openSnackBarFailed();
       }
     );
-    this.authService.isLoggedIn = true;
-    await this.router.navigateByUrl("/home");
+    this.authService.watchLoginStatus.next(true);
+    await this.router.navigateByUrl('/home');
+
   }
 
   public openSnackBarSuccess(){
