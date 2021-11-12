@@ -15,21 +15,19 @@ export class RegisterService {
               private snackbarService: SnackbarService,
               private router: Router,
               private authService: AuthenticationService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false
-    }
   }
 
   public async registerProfile(registerForm: FormData) {
     await this.http.post(this.SERVER_URL, registerForm).subscribe(
       res => {
         this.openSnackBarSuccess();
+        this.authService.watchLoginStatus.next(true);
+        this.authService.isAuthenticated();
       },
       error => {
         this.openSnackBarFailed();
       }
     );
-    this.authService.watchLoginStatus.next(true);
     await this.router.navigateByUrl('/home');
   }
 

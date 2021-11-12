@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RegisterService} from "../../services/register.service";
+import {AuthenticationService} from "../../services/authentication.service";
+import {UserInfoService} from "../../services/user-info.service";
 
 @Component({
   templateUrl: './register-page.component.html',
@@ -22,10 +24,19 @@ export class RegisterPageComponent {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private registerService: RegisterService) {
+              private registerService: RegisterService,
+              private authService: AuthenticationService,
+              private userInfoService: UserInfoService) {
   }
 
   async saveData(values: any) {
+    const loginData = new FormData();
+    loginData.append('userName', values.userName);
+    loginData.append('password', values.password);
+
+    this.authService.loginData = loginData;
+    this.userInfoService.loginData = loginData;
+
     const registrationData = new FormData();
     registrationData.append('firstName', values.firstName);
     registrationData.append('lastName', values.lastName);
@@ -50,11 +61,4 @@ export class RegisterPageComponent {
     await this.router.navigateByUrl("/login");
   }
 
-  errorMessage() {
-    if (this.registrationForm.hasError('email')) {
-      return "This is not a valid email";
-    } else {
-      return "An email is required"
-    }
-  }
 }
