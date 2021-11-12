@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {Subscription} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserInfo} from "../../models/user-info";
 
 @Component({
   selector: 'header-component',
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logoutFunction(){
+
     this.authService.watchLoginStatus.next(false);
     this.openSnackBarLogout();
   }

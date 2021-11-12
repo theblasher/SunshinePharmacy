@@ -41,7 +41,7 @@ export class RegisterPageComponent {
   async onSubmit() {
     if (this.registrationForm.value.password == this.registrationForm.value.reEnterPassword) {
       console.warn('Your order has been submitted', this.registrationForm.value);
-      await this.saveData(this.registrationForm.value)
+      await this.saveData(this.registrationForm.value);
     }
 
   }
