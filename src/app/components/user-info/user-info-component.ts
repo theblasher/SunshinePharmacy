@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ProfileService} from "../../services/profile.service";
+import {UserInfoService} from "../../services/user-info.service";
+import {AuthenticationService} from "../../services/authentication.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'user-info-component',
@@ -9,16 +11,33 @@ export class UserInfoComponent implements OnInit {
   userInfo = 'User Info';
   medications = 'Medications';
 
-  profiles: Object = [];
+  tableData = new MatTableDataSource<any>([]);
 
-  constructor(private policyService: ProfileService) {
+  displayedColumnsTitles = [
+    "Username",
+    "First Name",
+    "Last Name",
+    "Email",
+    "User Type",
+    "Date Of Birth"
+  ];
+
+  displayedColumns = [
+    "Username",
+    "First_Name",
+    "Last_Name",
+    "Email",
+    "User_Type",
+    "DOB"
+  ];
+
+  constructor(private authService: AuthenticationService,
+              private userInfoService: UserInfoService) {
   }
 
-  ngOnInit() {
-    this.policyService.getProfiles().subscribe(data => {
-      console.log(data);
-      this.profiles = data;
-    })
+  async ngOnInit() {
+    await this.userInfoService.getUserInfo();
+    this.tableData.data = await this.userInfoService.getUserInfo();
   }
 
 }

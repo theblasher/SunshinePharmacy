@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {UserInfoService} from "../../services/user-info.service";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: './login-page.component.html',
@@ -16,20 +18,29 @@ export class LoginPageComponent {
   });
 
   constructor(private authService: AuthenticationService,
-              private fb: FormBuilder) {
+              private userInfoService: UserInfoService,
+              private fb: FormBuilder,
+              private router: Router) {
   }
 
   async onSubmit() {
-      // console.warn('Your order has been submitted', this.loginForm.value);
-      await this.saveLoginData(this.loginForm.value);
+    await this.saveLoginData(this.loginForm.value);
+    this.loginForm.reset();
   }
 
-  async saveLoginData(values: any){
-    // console.log(values)
-    const productData = new FormData();
-    productData.append('userName', values.userName);
-    productData.append('password', values.password);
+  async onCancel() {
+    await this.router.navigateByUrl('/home');
+  }
 
-    await this.authService.areYouAuthenticated(productData);
+  async saveLoginData(values: any) {
+    const loginData = new FormData();
+    loginData.append('userName', values.userName);
+    loginData.append('password', values.password);
+
+    this.authService.loginData = loginData;
+    this.userInfoService.loginData = loginData;
+
+
+    await this.authService.isAuthenticated();
   }
 }

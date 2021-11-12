@@ -10,7 +10,7 @@ import {MedicationsComponent} from "./components/medications/medications.compone
 import {UserInfoComponent} from "./components/user-info/user-info-component";
 import {FooterComponent} from "./components/footer/footer-component";
 import {HomePageComponent} from "./components/home-page/home-page-component";
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {LoginPageComponent} from "./components/login-page/login-page.component";
 import {MatCardModule} from "@angular/material/card";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -35,14 +35,16 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {NgxCcModule} from "ngx-cc";
 import {OrderConfirmDialogComponent} from "./components/order-confirm-dialog/order-confirm-dialog.component";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomePageComponent},
-  {path: 'medications', component: MedicationsComponent},
-  {path: 'userinfo', component: UserInfoComponent},
+  {path: 'medications', component: MedicationsComponent, canActivate: [AuthGuardService]},
+  {path: 'userinfo', component: UserInfoComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginPageComponent},
-  {path: 'register', component: RegisterPageComponent}
+  {path: 'register', component: RegisterPageComponent},
+  {path: '**', redirectTo: '/home'}
 ];
 
 @NgModule({
@@ -85,7 +87,7 @@ const routes: Routes = [
     NgxCcModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

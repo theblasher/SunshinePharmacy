@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {Subscription} from "rxjs";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {UserInfo} from "../../models/user-info";
+import {SnackbarService} from "../../services/snackbar.service";
 
 @Component({
   selector: 'header-component',
@@ -12,10 +11,12 @@ import {UserInfo} from "../../models/user-info";
 export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthenticationService,
-              private snackbar: MatSnackBar){
-
+              private snackbarService: SnackbarService) {
   }
+
+
   private watchLoginStatusSub!: Subscription;
+
   loggedIn = false;
   link = [
     {path: '/home', label: 'Home'},
@@ -29,20 +30,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userInfo = 'User Info';
   medications = 'Medications';
 
-  ngOnInit(){
-    this.watchLoginStatusSub =this.authService.getLoginStatus().subscribe(isLoggedIn => {
+  ngOnInit() {
+    this.watchLoginStatusSub = this.authService.getLoginStatusObservable().subscribe(isLoggedIn => {
       this.loggedIn = isLoggedIn;
     });
   }
 
-  logoutFunction(){
-
+  logoutFunction() {
     this.authService.watchLoginStatus.next(false);
     this.openSnackBarLogout();
   }
 
-  public openSnackBarLogout(){
-    this.snackbar.open("You have logged out", "OK");
+  public openSnackBarLogout() {
+    this.snackbarService.openSnackBarLogout();
   }
 
   ngOnDestroy() {

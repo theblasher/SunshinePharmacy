@@ -1,21 +1,23 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./authentication.service";
+import {SnackbarService} from "./snackbar.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService{
+export class RegisterService {
   SERVER_URL: string = "http://47.197.115.239/insert.php/";
 
 
   constructor(private http: HttpClient,
-              private snackbar: MatSnackBar,
+              private snackbarService: SnackbarService,
               private router: Router,
               private authService: AuthenticationService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false }
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false
+    }
   }
 
   public async registerProfile(registerForm: FormData) {
@@ -29,14 +31,13 @@ export class RegisterService{
     );
     this.authService.watchLoginStatus.next(true);
     await this.router.navigateByUrl('/home');
-
   }
 
-  public openSnackBarSuccess(){
-    this.snackbar.open("Registration Complete!", "OK");
+  public openSnackBarSuccess() {
+    this.snackbarService.openSnackBarRegistrationSuccess();
   }
 
-  public openSnackBarFailed(){
-    this.snackbar.open("ERROR: Registration Failed!", "OK");
+  public openSnackBarFailed() {
+    this.snackbarService.openSnackBarRegistrationFailed();
   }
 }

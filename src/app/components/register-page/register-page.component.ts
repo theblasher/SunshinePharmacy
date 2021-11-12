@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ProfileService} from "../../services/profile.service";
 import {RegisterService} from "../../services/register.service";
 
 @Component({
@@ -26,22 +25,23 @@ export class RegisterPageComponent {
               private registerService: RegisterService) {
   }
 
-  async saveData(values: any){
-      const productData = new FormData();
-      productData.append('firstName', values.firstName);
-      productData.append('lastName', values.lastName);
-      productData.append('email', values.email);
-      productData.append('dateOfBirth', values.dateOfBirth);
-      productData.append('userName', values.userName);
-      productData.append('password', values.password);
+  async saveData(values: any) {
+    const registrationData = new FormData();
+    registrationData.append('firstName', values.firstName);
+    registrationData.append('lastName', values.lastName);
+    registrationData.append('email', values.email);
+    registrationData.append('dateOfBirth', values.dateOfBirth);
+    registrationData.append('userName', values.userName);
+    registrationData.append('password', values.password);
 
-      await this.registerService.registerProfile(productData);
+    await this.registerService.registerProfile(registrationData);
   }
 
   async onSubmit() {
     if (this.registrationForm.value.password == this.registrationForm.value.reEnterPassword) {
       console.warn('Your order has been submitted', this.registrationForm.value);
       await this.saveData(this.registrationForm.value);
+      this.registrationForm.reset();
     }
 
   }

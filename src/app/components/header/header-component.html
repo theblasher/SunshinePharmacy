@@ -17,11 +17,24 @@
 <nav mat-tab-nav-bar
      mat-align-tabs="center">
   <a mat-tab-link
-     *ngFor="let link of link"
-     [routerLink]="link.path"
+     [routerLink]="link[0].path"
      routerLinkActive #rla="routerLinkActive"
      [active]="rla.isActive">
-    {{link.label}}
+    {{link[0].label}}
+  </a>
+  <a mat-tab-link
+     *ngIf="loggedIn"
+     [routerLink]="link[1].path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link[1].label}}
+  </a>
+  <a mat-tab-link
+     *ngIf="loggedIn"
+     [routerLink]="link[2].path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link[2].label}}
   </a>
 </nav>
 
