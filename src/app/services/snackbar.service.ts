@@ -9,15 +9,15 @@ export class SnackbarService {
   }
 
   public openSnackBarLoginSuccess() {
-    this.snackbar.open("You Logged In!", "OK", {duration: 5000});
+    this.snackbar.open("Login Successful!", "OK", {duration: 5000});
   }
 
   public openSnackBarLoginFailed() {
-    this.snackbar.open("Username or Password Invalid", "OK", {duration: 5000});
+    this.snackbar.open("Username or Password Invalid!", "OK", {duration: 5000});
   }
 
   public openSnackBarLogout() {
-    this.snackbar.open("You have logged out", "OK", {duration: 5000});
+    this.snackbar.open("You have logged out! Thank you for visiting!", "OK", {duration: 5000});
   }
 
   public openSnackBarRegistrationSuccess() {

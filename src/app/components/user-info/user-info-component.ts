@@ -18,7 +18,6 @@ export class UserInfoComponent implements OnInit {
     "First Name",
     "Last Name",
     "Email",
-    "User Type",
     "Date Of Birth"
   ];
 
@@ -27,7 +26,6 @@ export class UserInfoComponent implements OnInit {
     "First_Name",
     "Last_Name",
     "Email",
-    "User_Type",
     "DOB"
   ];
 
