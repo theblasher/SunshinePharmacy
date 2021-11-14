@@ -3,12 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./authentication.service";
 import {SnackbarService} from "./snackbar.service";
+import {Constants} from "../shared/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  SERVER_URL: string = "http://47.197.115.239/insert.php/";
+  SERVER_URL: string = Constants.SERVER_URL + "insert.php/";
+  SERVER_URL_CHECK_USERNAME: string = Constants.SERVER_URL + "checkusername.php/";
 
 
   constructor(private http: HttpClient,
@@ -17,25 +19,28 @@ export class RegisterService {
               private authService: AuthenticationService) {
   }
 
+  public async checkUserName(userName: FormData, registerForm: FormData) {
+    console.log(userName);
+    let response = await this.http.post(this.SERVER_URL_CHECK_USERNAME, userName).toPromise();
+    console.log(response);
+    if (response == 1) {
+      this.snackbarService.openSnackBarUserNameExists();
+    } else if (response == 0) {
+      await this.registerProfile(registerForm);
+    }
+  }
+
   public async registerProfile(registerForm: FormData) {
-    await this.http.post(this.SERVER_URL, registerForm).subscribe(
+    this.http.post(this.SERVER_URL, registerForm).subscribe(
       res => {
-        this.openSnackBarSuccess();
+        this.snackbarService.openSnackBarRegistrationSuccess();
         this.authService.watchLoginStatus.next(true);
         this.authService.isAuthenticated();
       },
       error => {
-        this.openSnackBarFailed();
+        this.snackbarService.openSnackBarRegistrationFailed();
       }
     );
     await this.router.navigateByUrl('/home');
-  }
-
-  public openSnackBarSuccess() {
-    this.snackbarService.openSnackBarRegistrationSuccess();
-  }
-
-  public openSnackBarFailed() {
-    this.snackbarService.openSnackBarRegistrationFailed();
   }
 }

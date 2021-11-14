@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MedicationsConfirmDialogComponent} from "../components/medications-confirm-dialog/medications-confirm-dialog.component";
 import {MedicationsConfirmation} from "../models/medications-confirmation";
 import {OrderConfirmation} from "../models/order-confirmation";
+import {Constants} from "../shared/constants";
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import {OrderConfirmation} from "../models/order-confirmation";
 })
 export class MedicationsService {
 
-  SERVER_URL: string = "http://47.197.115.239/view.php/";
+  SERVER_URL: string = Constants.SERVER_URL + "view.php/";
   public medications !: Medications[];
 
   public medicationInformation !: MedicationsConfirmation;

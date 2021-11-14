@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UserInfo} from "../models/user-info";
+import {Constants} from "../shared/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserInfoService {
-  SERVER_URL_USER_INFO: string = "http://47.197.115.239/getuserinfo.php/";
+  SERVER_URL_USER_INFO: string = Constants.SERVER_URL + "getuserinfo.php/";
   public loginData !: FormData;
   public userInfo !: UserInfo[];
 

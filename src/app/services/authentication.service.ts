@@ -5,13 +5,14 @@ import {Router} from "@angular/router";
 import {UserInfo} from "../models/user-info";
 import {UserInfoService} from "./user-info.service";
 import {SnackbarService} from "./snackbar.service";
+import {Constants} from "../shared/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  SERVER_URL: string = "http://47.197.115.239/login.php/";
-  SERVER_URL_USER_INFO: string = "http://47.197.115.239/getuserinfo.php/";
+  SERVER_URL: string = Constants.SERVER_URL + "login.php/";
+  SERVER_URL_USER_INFO: string = Constants.SERVER_URL + "getuserinfo.php/";
 
   public userInfo !: UserInfo[];
   public loggedIn !: boolean;

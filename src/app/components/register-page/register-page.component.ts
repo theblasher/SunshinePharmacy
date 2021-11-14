@@ -30,6 +30,9 @@ export class RegisterPageComponent {
   }
 
   async saveData(values: any) {
+    const userNameData = new FormData();
+    userNameData.append('userName', values.userName);
+
     const loginData = new FormData();
     loginData.append('userName', values.userName);
     loginData.append('password', values.password);
@@ -45,7 +48,7 @@ export class RegisterPageComponent {
     registrationData.append('userName', values.userName);
     registrationData.append('password', values.password);
 
-    await this.registerService.registerProfile(registrationData);
+    await this.registerService.checkUserName(userNameData, registrationData);
   }
 
   async onSubmit() {

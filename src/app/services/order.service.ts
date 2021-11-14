@@ -3,13 +3,14 @@ import {SnackbarService} from "./snackbar.service";
 import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
 import {OrderConfirmDialogComponent} from "../components/order-confirm-dialog/order-confirm-dialog.component";
+import {Constants} from "../shared/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  SERVER_URL: string = "http://47.197.115.239/insertorder.php/";
+  SERVER_URL: string = Constants.SERVER_URL + "insertorder.php/";
 
   cardNum !: string;
 
@@ -27,6 +28,7 @@ export class OrderService {
       {responseType: "text"}).subscribe(
       res => {
         this.matDialog.open(OrderConfirmDialogComponent);
+        this.snackbarService.openSnackBarCheckoutSuccess();
       },
       error => {
         this.openSnackBarFailed();
@@ -35,7 +37,7 @@ export class OrderService {
   }
 
   public openSnackBarFailed() {
-    this.snackbarService.openSnackBarRegistrationFailed();
+    this.snackbarService.openSnackBarCheckoutFailed();
   }
 
 }
