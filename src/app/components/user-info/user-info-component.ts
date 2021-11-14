@@ -13,29 +13,49 @@ export class UserInfoComponent implements OnInit {
 
   tableData = new MatTableDataSource<any>([]);
 
-  displayedColumnsTitles = [
-    "Username",
-    "First Name",
-    "Last Name",
-    "Email",
-    "Date Of Birth"
-  ];
+  displayedColumnsTitles !: string [];
 
-  displayedColumns = [
-    "Username",
-    "First_Name",
-    "Last_Name",
-    "Email",
-    "DOB"
-  ];
+  displayedColumns !: string [];
 
   constructor(private authService: AuthenticationService,
               private userInfoService: UserInfoService) {
   }
 
   async ngOnInit() {
-    await this.userInfoService.getUserInfo();
-    this.tableData.data = await this.userInfoService.getUserInfo();
+    console.log(this.userInfoService.userInfo[0].User_Type);
+    if (this.userInfoService.userInfo[0].User_Type == "admin") {
+      this.displayedColumnsTitles = [
+        "Username",
+        "First Name",
+        "Last Name"
+      ];
+
+      this.displayedColumns = [
+        "Username",
+        "First_Name",
+        "Last_Name"
+      ];
+
+      this.tableData.data = await this.userInfoService.getAdminUserInfo();
+    } else if (this.userInfoService.userInfo[0].User_Type == "user") {
+      this.displayedColumnsTitles = [
+        "Username",
+        "First Name",
+        "Last Name",
+        "Email",
+        "Date Of Birth"
+      ];
+
+      this.displayedColumns = [
+        "Username",
+        "First_Name",
+        "Last_Name",
+        "Email",
+        "DOB"
+      ];
+
+      this.tableData.data = this.userInfoService.userInfo;
+    }
   }
 
 }
