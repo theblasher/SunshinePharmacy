@@ -17,7 +17,7 @@
       </mat-header-cell>
       <mat-cell
         *matCellDef="let element">
-        <mat-icon *ngIf="displayedColumnTitles[i] == 'Select?'; else elseBlock"
+        <mat-icon *ngIf="displayedColumns[i] == 'Select'; else elseBlock"
                   (click)="onClick(element)"
                   style="color: #46a35e">
           check_circle

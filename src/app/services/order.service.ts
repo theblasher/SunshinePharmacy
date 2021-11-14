@@ -24,7 +24,7 @@ export class OrderService {
   }
 
   public async checkoutSubmission(checkoutForm: FormData) {
-    await this.http.post(this.SERVER_URL, checkoutForm,
+    this.http.post(this.SERVER_URL, checkoutForm,
       {responseType: "text"}).subscribe(
       res => {
         this.matDialog.open(OrderConfirmDialogComponent);

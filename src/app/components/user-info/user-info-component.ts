@@ -25,15 +25,19 @@ export class UserInfoComponent implements OnInit {
     console.log(this.userInfoService.userInfo[0].User_Type);
     if (this.userInfoService.userInfo[0].User_Type == "admin") {
       this.displayedColumnsTitles = [
+        "Change Account Type?",
         "Username",
         "First Name",
-        "Last Name"
+        "Last Name",
+        "User Type"
       ];
 
       this.displayedColumns = [
+        "Select",
         "Username",
         "First_Name",
-        "Last_Name"
+        "Last_Name",
+        "User_Type"
       ];
 
       this.tableData.data = await this.userInfoService.getAdminUserInfo();

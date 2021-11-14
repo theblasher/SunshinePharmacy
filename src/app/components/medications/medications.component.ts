@@ -23,9 +23,8 @@ export class MedicationsComponent implements OnInit {
 
   async ngOnInit() {
     let userInfo = this.userInfoService.userInfo[0];
-    if (userInfo.User_Type == "admin"){
+    if (userInfo.User_Type == "admin") {
       this.displayedColumnsTitles = [
-        "Select?",
         "Product ID",
         "Product NDC",
         "Product Type Name",
@@ -49,7 +48,6 @@ export class MedicationsComponent implements OnInit {
       ];
 
       this.displayedColumns = [
-        "Select",
         "ProductID",
         "ProductNDC",
         "ProductTypeName",
@@ -71,9 +69,7 @@ export class MedicationsComponent implements OnInit {
         "NDC_Exclude_Flag",
         "Listing_Record_Certified_Through"
       ];
-    }
-
-    else if (userInfo.User_Type == "user"){
+    } else if (userInfo.User_Type == "user") {
       this.displayedColumnsTitles = [
         "Select?",
         "Substance Name",

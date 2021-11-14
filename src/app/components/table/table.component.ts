@@ -2,8 +2,8 @@ import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from "@angular/material/sort";
-import {Medications} from "../../models/medications";
 import {MedicationsService} from "../../services/medications.service";
+import {UserInfoService} from "../../services/user-info.service";
 
 @Component({
   selector: 'table-component',
@@ -18,7 +18,8 @@ export class TableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort ?: MatSort;
 
-  constructor(private medService: MedicationsService) {
+  constructor(private medService: MedicationsService,
+              private userInfoService: UserInfoService) {
   }
 
   ngAfterViewInit() {
@@ -49,8 +50,12 @@ export class TableComponent implements AfterViewInit {
     }
   }
 
-  onClick(element: Medications) {
-    this.medService.openConfirmationDialog(element);
+  onClick(element: any) {
+    if (this.userInfoService.userInfo[0].User_Type == "admin") {
+      this.userInfoService.openAccountChangeDialog(element);
+    } else if (this.userInfoService.userInfo[0].User_Type == "user") {
+      this.medService.openConfirmationDialog(element);
+    }
   }
 
 }

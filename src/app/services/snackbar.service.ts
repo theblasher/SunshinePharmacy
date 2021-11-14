@@ -41,4 +41,13 @@ export class SnackbarService {
     this.snackbar.open("ERROR: Order Submission Failed!", "OK", {duration: 5000});
   }
 
+  public openSnackBarAccountUpdateInformationSuccess() {
+    this.snackbar.open("Account Information Updated!", "OK", {duration: 5000});
+  }
+
+  public openSnackBarAccountUpdateInformationFailed() {
+    this.snackbar.open("ERROR: Update of Account Information Failed!", "OK", {duration: 5000});
+  }
+
+
 }

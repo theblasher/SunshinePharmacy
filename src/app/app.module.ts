@@ -36,6 +36,7 @@ import {NgxCcModule} from "ngx-cc";
 import {OrderConfirmDialogComponent} from "./components/order-confirm-dialog/order-confirm-dialog.component";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {AuthGuardService} from "./services/auth-guard.service";
+import {ChangeUsertypeDialogComponent} from "./components/change-usertype-dialog/change-usertype-dialog.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -60,7 +61,8 @@ const routes: Routes = [
     TableComponent,
     MedicationsConfirmDialogComponent,
     CheckoutDialogComponent,
-    OrderConfirmDialogComponent
+    OrderConfirmDialogComponent,
+    ChangeUsertypeDialogComponent
   ],
   imports: [
     CommonModule,

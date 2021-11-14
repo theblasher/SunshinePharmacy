@@ -1,0 +1,16 @@
+<mat-card-title mat-dialog-title>{{dialogTitle}}{{userNameToChange}}</mat-card-title>
+<mat-dialog-content align="center">
+  <p>Update <b>{{userNameToChange}}'s</b> account from <b>{{userAccountTypeBeforeChange}}</b> to
+    <b>{{userAccountTypeToChangeTo}}</b>?</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button type="submit" color="primary" mat-button
+          (click)="onSubmit()">
+    Confrim
+  </button>
+  <button type="button" color="primary" mat-button
+          (click)="onCancel()">
+    Close
+  </button>
+</mat-dialog-actions>

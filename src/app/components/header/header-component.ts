@@ -38,10 +38,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logoutFunction() {
     this.authService.watchLoginStatus.next(false);
-    this.openSnackBarLogout();
-  }
-
-  public openSnackBarLogout() {
     this.snackbarService.openSnackBarLogout();
   }
 
