@@ -20,9 +20,7 @@ export class RegisterService {
   }
 
   public async checkUserName(userName: FormData, registerForm: FormData) {
-    console.log(userName);
     let response = await this.http.post(this.SERVER_URL_CHECK_USERNAME, userName).toPromise();
-    console.log(response);
     if (response == 1) {
       this.snackbarService.openSnackBarUserNameExists();
     } else if (response == 0) {
