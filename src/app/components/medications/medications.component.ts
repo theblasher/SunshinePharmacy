@@ -26,6 +26,7 @@ export class MedicationsComponent implements OnInit {
     if (userInfo.User_Type == "admin") {
       this.displayedColumnsTitles = [
         "Product ID",
+        "Substance Name",
         "Product NDC",
         "Product Type Name",
         "Proprietary Name",
@@ -38,7 +39,6 @@ export class MedicationsComponent implements OnInit {
         "Marketing Category Name",
         "Application Number",
         "Labeler Name",
-        "Substance Name",
         "Active Numerator Strength",
         "Active Ingredient Unit",
         "Pharmacy Classes",
@@ -48,6 +48,56 @@ export class MedicationsComponent implements OnInit {
       ];
 
       this.displayedColumns = [
+        "ProductID",
+        "SubstanceName",
+        "ProductNDC",
+        "ProductTypeName",
+        "ProprietaryName",
+        "ProprietaryNameSuffix",
+        "NonProprietaryName",
+        "DosageFormName",
+        "RouteName",
+        "StartMarketingDate",
+        "EndMarketingDate",
+        "MarketingCategoryName",
+        "ApplicationNumber",
+        "LabelerName",
+        "Active_Numerator_Strength",
+        "Active_Ingred_Unit",
+        "Pharm_Classes",
+        "DEASchedule",
+        "NDC_Exclude_Flag",
+        "Listing_Record_Certified_Through"
+      ];
+    }
+    if (userInfo.User_Type == "prescriber") {
+      this.displayedColumnsTitles = [
+        "Select?",
+        "Substance Name",
+        "Product ID",
+        "Product NDC",
+        "Product Type Name",
+        "Proprietary Name",
+        "Proprietary Name Suffix",
+        "Non-Proprietary Name",
+        "Dosage Form Name",
+        "Route Name",
+        "Start Marketing Date",
+        "End Marketing Date",
+        "Marketing Category Name",
+        "Application Number",
+        "Labeler Name",
+        "Active Numerator Strength",
+        "Active Ingredient Unit",
+        "Pharmacy Classes",
+        "DEA Schedule",
+        "NDC Exclude Flag",
+        "Listing Record Certified Through"
+      ];
+
+      this.displayedColumns = [
+        "Select",
+        "SubstanceName",
         "ProductID",
         "ProductNDC",
         "ProductTypeName",
@@ -61,7 +111,6 @@ export class MedicationsComponent implements OnInit {
         "MarketingCategoryName",
         "ApplicationNumber",
         "LabelerName",
-        "SubstanceName",
         "Active_Numerator_Strength",
         "Active_Ingred_Unit",
         "Pharm_Classes",
@@ -69,18 +118,16 @@ export class MedicationsComponent implements OnInit {
         "NDC_Exclude_Flag",
         "Listing_Record_Certified_Through"
       ];
-    } else if (userInfo.User_Type == "user") {
+    }else if (userInfo.User_Type == "user") {
       this.displayedColumnsTitles = [
         "Select?",
         "Substance Name",
-        "Product ID",
         "Product Type Name"
       ];
 
       this.displayedColumns = [
         "Select",
         "SubstanceName",
-        "ProductID",
         "ProductTypeName"
       ];
     }

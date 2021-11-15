@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private watchAdminStatusSub!: Subscription;
 
   loggedIn = false;
-  isAdmin = false;
+  accountType = "";
   link = [
     {path: '/home', label: 'Home'},
     {path: '/medications', label: 'Medications'},
@@ -39,8 +39,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.watchLoginStatusSub = this.authService.getLoginStatusObservable().subscribe(isLoggedIn => {
       this.loggedIn = isLoggedIn;
     });
-    this.watchAdminStatusSub = this.userInfoService.getAdminStatusObservable().subscribe(isAdmin => {
-      this.isAdmin = isAdmin;
+    this.watchAdminStatusSub = this.userInfoService.getAccountStatusObservable().subscribe(accountType => {
+      this.accountType = accountType;
     })
   }
 

@@ -39,7 +39,7 @@
     {{link[2].label}}
   </a>
   <a mat-tab-link
-     *ngIf="loggedIn && isAdmin"
+     *ngIf="loggedIn && (accountType== 'admin' || accountType == 'user')"
      [routerLink]="link[3].path"
      routerLinkActive #rla="routerLinkActive"
      [active]="rla.isActive">

@@ -37,7 +37,7 @@ export class AuthenticationService {
       this.openSnackBarLoginSuccess();
       await this.router.navigateByUrl('/home');
       this.watchLoginStatus.next(true);
-      await this.userInfoService.getUserInfo();
+      await this.userInfoService.getUserInfoForLoggedInUser();
     } else {
       this.openSnackBarLoginFailed();
     }

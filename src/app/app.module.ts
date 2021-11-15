@@ -28,7 +28,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatSortModule} from "@angular/material/sort";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
-import {MedicationsConfirmDialogComponent} from "./components/medications-confirm-dialog/medications-confirm-dialog.component";
+import {PrescriberMedOrderConfirmDialog} from "./components/prescriber-med-order-confirm-dialog/prescriber-med-order-confirm-dialog";
 import {MatDialogModule} from "@angular/material/dialog";
 import {CheckoutDialogComponent} from "./components/checkout-dialog/checkout-dialog.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
@@ -62,7 +62,7 @@ const routes: Routes = [
     LoginPageComponent,
     RegisterPageComponent,
     TableComponent,
-    MedicationsConfirmDialogComponent,
+    PrescriberMedOrderConfirmDialog,
     CheckoutDialogComponent,
     OrderConfirmDialogComponent,
     ChangeUsertypeDialogComponent,

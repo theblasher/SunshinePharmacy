@@ -1,0 +1,87 @@
+<mat-card-title mat-dialog-title>Prescribe: {{medicationName}}?</mat-card-title>
+<mat-dialog-content [formGroup]="confirmationForm" align="center">
+
+  <p>Medication: {{medicationName}}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>New or Refill?</mat-label>
+    <mat-select id="type"
+                formControlName="type">
+      <mat-option *ngFor="let choice of choices"
+                  [value]="choice">
+        {{choice}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>Prescriber First Name: {{prescriberFirstName}}</p>
+  <p>Prescriber Last Name: {{prescriberLastName}}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Prescriber Office #</mat-label>
+    <input id="officeNumber"
+           formControlName="officeNumber"
+           maxlength="10"
+           matInput>
+    <mat-hint>10 Digit Office Phone Num.</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Patient First Name</mat-label>
+    <input id="patientFirstName"
+           formControlName="patientFirstName"
+           matInput>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Patient Last Name</mat-label>
+    <input id="patientLastName"
+           formControlName="patientLastName"
+           matInput>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Patient Street</mat-label>
+    <input id="patientStreet"
+           formControlName="patientStreet"
+           matInput>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Patient City</mat-label>
+    <input id="patientCity"
+           formControlName="patientCity"
+           matInput>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Patient State</mat-label>
+    <mat-select id="state"
+                formControlName="state">
+      <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Patient Zip Code</mat-label>
+    <input id="patientZipCode"
+           formControlName="patientZipCode" matInput placeholder="Zip Code" maxlength="5">
+  </mat-form-field>
+
+  <mat-form-field class="patientDOB">
+    <mat-label>Patient Date of Birth</mat-label>
+    <input matInput type="date" id="patientDOB" formControlName="patientDOB">
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button type="submit" color="primary" mat-button
+          (click)="onSubmit()"
+          [disabled]="!confirmationForm.valid">
+    Checkout
+  </button>
+  <button mat-button color="primary" type="button" (click)="onCancel()">
+    Cancel
+  </button>
+</mat-dialog-actions>

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Medications} from "../models/medications";
 import {MatDialog} from "@angular/material/dialog";
-import {MedicationsConfirmDialogComponent} from "../components/medications-confirm-dialog/medications-confirm-dialog.component";
+import {PrescriberMedOrderConfirmDialog} from "../components/prescriber-med-order-confirm-dialog/prescriber-med-order-confirm-dialog";
 import {MedicationsConfirmation} from "../models/medications-confirmation";
 import {OrderConfirmation} from "../models/order-confirmation";
 import {Constants} from "../shared/constants";
@@ -36,6 +36,6 @@ export class MedicationsService {
 
   public openConfirmationDialog(element: Medications) {
     this.medicationConfirm = element;
-    this.matDialog.open(MedicationsConfirmDialogComponent);
+    this.matDialog.open(PrescriberMedOrderConfirmDialog);
   }
 }

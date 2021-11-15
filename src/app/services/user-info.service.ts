@@ -21,9 +21,7 @@ export class UserInfoService {
 
   public userAccountToChange !: UserInfo;
 
-  isAdmin = false;
-
-  public watchAdminStatus = new Subject<boolean>();
+  public watchAccountStatus = new Subject<string>();
 
 
   constructor(private http: HttpClient,
@@ -31,8 +29,8 @@ export class UserInfoService {
               private snackbarService: SnackbarService) {
   }
 
-  public getAdminStatusObservable() {
-    return this.watchAdminStatus.asObservable();
+  public getAccountStatusObservable() {
+    return this.watchAccountStatus.asObservable();
   }
 
   public async getAdminUserInfo() {
@@ -40,12 +38,17 @@ export class UserInfoService {
     return this.adminUserInfo;
   }
 
-  public async getUserInfo() {
+  public async getUserInfoForLoggedInUser() {
     this.userInfo = await this.http.post<UserInfo[]>(this.SERVER_URL_USER_INFO, this.loginData).toPromise();
     console.log(this.userInfo[0].User_Type)
     if (this.userInfo[0].User_Type == "admin") {
-      this.watchAdminStatus.next(true);
-      this.isAdmin = true;
+      this.watchAccountStatus.next("admin");
+    }
+    else if (this.userInfo[0].User_Type == "user") {
+      this.watchAccountStatus.next("user");
+    }
+    else if (this.userInfo[0].User_Type == "prescriber") {
+      this.watchAccountStatus.next("prescriber");
     }
     return this.userInfo;
   }
