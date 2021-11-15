@@ -16,7 +16,7 @@ export class MedicationsService {
   SERVER_URL: string = Constants.SERVER_URL + "view.php/";
   public medications !: Medications[];
 
-  public medicationInformation !: MedicationsConfirmation;
+  public medicationOrderInformation !: MedicationsConfirmation;
   public orderInformation !: OrderConfirmation;
 
   public medicationConfirm !: Medications;
@@ -31,11 +31,7 @@ export class MedicationsService {
   }
 
   public saveMedConfirmation(confirmationMed: MedicationsConfirmation) {
-    this.medicationInformation = confirmationMed;
-  }
-
-  public saveOrderConfirmation(orderConfirmation: OrderConfirmation) {
-    this.orderInformation = orderConfirmation;
+    this.medicationOrderInformation = confirmationMed;
   }
 
   public openConfirmationDialog(element: Medications) {

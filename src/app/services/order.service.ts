@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
 import {OrderConfirmDialogComponent} from "../components/order-confirm-dialog/order-confirm-dialog.component";
 import {Constants} from "../shared/constants";
+import {OrderHistory} from "../models/order-history";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,9 @@ import {Constants} from "../shared/constants";
 export class OrderService {
 
   SERVER_URL: string = Constants.SERVER_URL + "insertorder.php/";
+  SERVER_URL_ORDER_HISTORY: string = Constants.SERVER_URL + "vieworders.php/";
+
+  public orders !: OrderHistory[];
 
   cardNum !: string;
 
@@ -21,6 +25,12 @@ export class OrderService {
 
   public saveLastFourOfCreditCard(cardNum: string) {
     this.cardNum = cardNum;
+  }
+
+  public async getOrderHistory() {
+    this.orders = await this.http.get<OrderHistory[]>(this.SERVER_URL_ORDER_HISTORY).toPromise();
+    console.log(this.orders);
+    return this.orders;
   }
 
   public async checkoutSubmission(checkoutForm: FormData) {

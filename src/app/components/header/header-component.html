@@ -38,5 +38,12 @@
      [active]="rla.isActive">
     {{link[2].label}}
   </a>
+  <a mat-tab-link
+     *ngIf="loggedIn && isAdmin"
+     [routerLink]="link[3].path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link[3].label}}
+  </a>
 </nav>
 

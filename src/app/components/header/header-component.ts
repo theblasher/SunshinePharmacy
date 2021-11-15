@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {Subscription} from "rxjs";
 import {SnackbarService} from "../../services/snackbar.service";
+import {UserInfoService} from "../../services/user-info.service";
 
 @Component({
   selector: 'header-component',
@@ -11,17 +12,21 @@ import {SnackbarService} from "../../services/snackbar.service";
 export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthenticationService,
-              private snackbarService: SnackbarService) {
+              private snackbarService: SnackbarService,
+              private userInfoService: UserInfoService) {
   }
 
 
   private watchLoginStatusSub!: Subscription;
+  private watchAdminStatusSub!: Subscription;
 
   loggedIn = false;
+  isAdmin = false;
   link = [
     {path: '/home', label: 'Home'},
     {path: '/medications', label: 'Medications'},
-    {path: '/userinfo', label: 'User Info'}
+    {path: '/userinfo', label: 'User Info'},
+    {path: '/orderhistory', label: 'Order History'}
   ];
   login = {path: '/login', label: 'Login'};
   logout = {path: '/home', label: 'Logout'};
@@ -34,6 +39,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.watchLoginStatusSub = this.authService.getLoginStatusObservable().subscribe(isLoggedIn => {
       this.loggedIn = isLoggedIn;
     });
+    this.watchAdminStatusSub = this.userInfoService.getAdminStatusObservable().subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
+    })
   }
 
   logoutFunction() {
@@ -43,5 +51,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.watchLoginStatusSub.unsubscribe();
+    this.watchAdminStatusSub.unsubscribe();
   }
 }

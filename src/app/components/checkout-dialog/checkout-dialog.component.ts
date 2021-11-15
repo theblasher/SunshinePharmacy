@@ -13,6 +13,8 @@ import {OrderService} from "../../services/order.service";
 })
 export class CheckoutDialogComponent implements OnInit {
   medicationConfirmName!: string;
+  prescriberLastName!: string;
+  officePhoneNumber!: string;
   color = "primary";
 
   states: string[] = [
@@ -94,8 +96,10 @@ export class CheckoutDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.prescriberLastName = this.medService.medicationOrderInformation.prescriberLastName;
+    this.officePhoneNumber = this.medService.medicationOrderInformation.officeNumber;
     this.medicationConfirmName = this.medService.medicationConfirm.SubstanceName;
-    this.medicationType = this.medService.medicationInformation.type;
+    this.medicationType = this.medService.medicationOrderInformation.type;
   }
 
   async onSubmit() {
@@ -113,6 +117,8 @@ export class CheckoutDialogComponent implements OnInit {
     checkoutData.append('lastName', values.lastName);
     checkoutData.append('medication', values.medication);
     checkoutData.append('medicationType', values.medicationType);
+    checkoutData.append('prescriberLastName', this.prescriberLastName);
+    checkoutData.append('officePhoneNumber', this.officePhoneNumber);
     checkoutData.append('streetAddress', values.streetAddress);
     checkoutData.append('city', values.city);
     checkoutData.append('state', values.state);

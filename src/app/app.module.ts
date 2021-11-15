@@ -35,16 +35,19 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {NgxCcModule} from "ngx-cc";
 import {OrderConfirmDialogComponent} from "./components/order-confirm-dialog/order-confirm-dialog.component";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {AuthGuardService} from "./services/auth-guard.service";
+import {AuthGuardLoginService} from "./services/auth-guard-login.service";
 import {ChangeUsertypeDialogComponent} from "./components/change-usertype-dialog/change-usertype-dialog.component";
+import {OrderHistoryComponent} from "./components/order-history/order-history.component";
+import {AuthGuardAdminService} from "./services/auth-guard-admin.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomePageComponent},
-  {path: 'medications', component: MedicationsComponent, canActivate: [AuthGuardService]},
-  {path: 'userinfo', component: UserInfoComponent, canActivate: [AuthGuardService]},
+  {path: 'medications', component: MedicationsComponent, canActivate: [AuthGuardLoginService]},
+  {path: 'userinfo', component: UserInfoComponent, canActivate: [AuthGuardLoginService]},
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component: RegisterPageComponent},
+  {path: 'orderhistory', component: OrderHistoryComponent, canActivate: [AuthGuardAdminService]},
   {path: '**', redirectTo: '/home'}
 ];
 
@@ -62,7 +65,8 @@ const routes: Routes = [
     MedicationsConfirmDialogComponent,
     CheckoutDialogComponent,
     OrderConfirmDialogComponent,
-    ChangeUsertypeDialogComponent
+    ChangeUsertypeDialogComponent,
+    OrderHistoryComponent
   ],
   imports: [
     CommonModule,

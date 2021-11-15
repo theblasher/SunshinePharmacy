@@ -5,6 +5,7 @@ import {Constants} from "../shared/constants";
 import {MatDialog} from "@angular/material/dialog";
 import {ChangeUsertypeDialogComponent} from "../components/change-usertype-dialog/change-usertype-dialog.component";
 import {SnackbarService} from "./snackbar.service";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,18 @@ export class UserInfoService {
 
   public userAccountToChange !: UserInfo;
 
+  isAdmin = false;
+
+  public watchAdminStatus = new Subject<boolean>();
+
 
   constructor(private http: HttpClient,
               private matDialog: MatDialog,
               private snackbarService: SnackbarService) {
+  }
+
+  public getAdminStatusObservable() {
+    return this.watchAdminStatus.asObservable();
   }
 
   public async getAdminUserInfo() {
@@ -33,6 +42,11 @@ export class UserInfoService {
 
   public async getUserInfo() {
     this.userInfo = await this.http.post<UserInfo[]>(this.SERVER_URL_USER_INFO, this.loginData).toPromise();
+    console.log(this.userInfo[0].User_Type)
+    if (this.userInfo[0].User_Type == "admin") {
+      this.watchAdminStatus.next(true);
+      this.isAdmin = true;
+    }
     return this.userInfo;
   }
 

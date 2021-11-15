@@ -33,7 +33,6 @@ export class AuthenticationService {
 
   async isAuthenticated() {
     this.loggedIn = await this.http.post<boolean>(this.SERVER_URL, this.loginData).toPromise();
-    console.log(this.loggedIn);
     if (this.loggedIn) {
       this.openSnackBarLoginSuccess();
       await this.router.navigateByUrl('/home');
