@@ -6,10 +6,10 @@ import {UserInfoService} from "../../services/user-info.service";
 
 @Component({
   selector: 'medications-component',
-  templateUrl: './medications.component.html',
-  styleUrls: ['medications.component.css']
+  templateUrl: './prescriptions.component.html',
+  styleUrls: ['prescriptions.component.css']
 })
-export class MedicationsComponent implements OnInit {
+export class PrescriptionsComponent implements OnInit {
   medications!: Medications[];
   tableData = new MatTableDataSource<any>([]);
 
@@ -25,11 +25,12 @@ export class MedicationsComponent implements OnInit {
     let userInfo = this.userInfoService.userInfo[0];
     if (userInfo.User_Type == "admin") {
       this.displayedColumnsTitles = [
+        "Select?",
+        "Drug Name",
+        "Brand Name",
         "Product ID",
-        "Substance Name",
         "Product NDC",
         "Product Type Name",
-        "Proprietary Name",
         "Proprietary Name Suffix",
         "Non-Proprietary Name",
         "Dosage Form Name",
@@ -48,11 +49,12 @@ export class MedicationsComponent implements OnInit {
       ];
 
       this.displayedColumns = [
-        "ProductID",
+        "Select",
         "SubstanceName",
+        "ProprietaryName",
+        "ProductID",
         "ProductNDC",
         "ProductTypeName",
-        "ProprietaryName",
         "ProprietaryNameSuffix",
         "NonProprietaryName",
         "DosageFormName",
@@ -73,11 +75,11 @@ export class MedicationsComponent implements OnInit {
     if (userInfo.User_Type == "prescriber") {
       this.displayedColumnsTitles = [
         "Select?",
-        "Substance Name",
+        "Brand Name",
+        "Drug Name",
         "Product ID",
         "Product NDC",
         "Product Type Name",
-        "Proprietary Name",
         "Proprietary Name Suffix",
         "Non-Proprietary Name",
         "Dosage Form Name",
@@ -97,11 +99,11 @@ export class MedicationsComponent implements OnInit {
 
       this.displayedColumns = [
         "Select",
+        "ProprietaryName",
         "SubstanceName",
         "ProductID",
         "ProductNDC",
         "ProductTypeName",
-        "ProprietaryName",
         "ProprietaryNameSuffix",
         "NonProprietaryName",
         "DosageFormName",
@@ -121,14 +123,14 @@ export class MedicationsComponent implements OnInit {
     }else if (userInfo.User_Type == "user") {
       this.displayedColumnsTitles = [
         "Select?",
-        "Substance Name",
-        "Product Type Name"
+        "Brand Name",
+        "Drug Name"
       ];
 
       this.displayedColumns = [
         "Select",
-        "SubstanceName",
-        "ProductTypeName"
+        "ProprietaryName",
+        "SubstanceName"
       ];
     }
     await this.medicationsService.getMedications();

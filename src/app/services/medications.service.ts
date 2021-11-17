@@ -30,7 +30,7 @@ export class MedicationsService {
     return this.medications;
   }
 
-  public saveMedConfirmation(confirmationMed: MedicationsConfirmation) {
+  public savePrescriptionInformation(confirmationMed: MedicationsConfirmation) {
     this.medicationOrderInformation = confirmationMed;
   }
 

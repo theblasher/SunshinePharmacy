@@ -1,78 +1,124 @@
 <mat-card-title mat-dialog-title>Prescribe: {{medicationName}}?</mat-card-title>
 <mat-dialog-content [formGroup]="confirmationForm" align="center">
 
-  <p>Medication: {{medicationName}}</p>
-
-  <mat-form-field appearance="fill">
-    <mat-label>New or Refill?</mat-label>
-    <mat-select id="type"
-                formControlName="type">
-      <mat-option *ngFor="let choice of choices"
-                  [value]="choice">
-        {{choice}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <p>Prescriber First Name: {{prescriberFirstName}}</p>
-  <p>Prescriber Last Name: {{prescriberLastName}}</p>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Prescriber Office #</mat-label>
-    <input id="officeNumber"
-           formControlName="officeNumber"
-           maxlength="10"
-           matInput>
-    <mat-hint>10 Digit Office Phone Num.</mat-hint>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Patient First Name</mat-label>
-    <input id="patientFirstName"
-           formControlName="patientFirstName"
-           matInput>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Patient Last Name</mat-label>
-    <input id="patientLastName"
-           formControlName="patientLastName"
-           matInput>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Patient Street</mat-label>
-    <input id="patientStreet"
-           formControlName="patientStreet"
-           matInput>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Patient City</mat-label>
-    <input id="patientCity"
-           formControlName="patientCity"
-           matInput>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Patient State</mat-label>
-    <mat-select id="state"
-                formControlName="state">
-      <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Patient Zip Code</mat-label>
-    <input id="patientZipCode"
-           formControlName="patientZipCode" matInput placeholder="Zip Code" maxlength="5">
-  </mat-form-field>
-
-  <mat-form-field class="patientDOB">
-    <mat-label>Patient Date of Birth</mat-label>
-    <input matInput type="date" id="patientDOB" formControlName="patientDOB">
-  </mat-form-field>
-
+  <table>
+    <tr>
+      <td>Medication:</td>
+      <td>{{medicationName}}</td>
+    </tr>
+    <tr>
+      <td>Medication Quantity: </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="medicationQuantity"
+                 formControlName="medicationQuantity"
+                 matInput>
+        </mat-form-field></td>
+    </tr>
+    <tr>
+      <td>Medication Frequency: </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="medicationFrequency"
+                 formControlName="medicationFrequency"
+                 matInput>
+        </mat-form-field></td>
+    </tr>
+    <tr>
+      <td>New or Refill?</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-select id="type"
+                      formControlName="type">
+            <mat-option *ngFor="let choice of choices"
+                        [value]="choice">
+              {{choice}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Prescriber First Name:</td>
+      <td>{{prescriberFirstName}}</td>
+    </tr>
+    <tr>
+      <td>Prescriber Last Name:</td>
+      <td>{{prescriberLastName}}</td>
+    </tr>
+    <tr>
+      <td>Patient First Name:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="patientFirstName"
+                 formControlName="patientFirstName"
+                 matInput>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Patient Last Name:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="patientLastName"
+                 formControlName="patientLastName"
+                 matInput>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Patient Street:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="patientStreet"
+                 formControlName="patientStreet"
+                 matInput>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Patient City:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="patientCity"
+                 formControlName="patientCity"
+                 matInput>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Patient State:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-select id="patientState"
+                      formControlName="patientState">
+            <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Patient Zip Code:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="patientZipCode"
+                 formControlName="patientZipCode"
+                 matInput>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Patient Date of Birth:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="patientDOB"
+                 type="date"
+                 formControlName="patientDOB"
+                 matInput>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">

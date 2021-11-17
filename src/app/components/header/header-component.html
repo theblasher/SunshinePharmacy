@@ -25,11 +25,18 @@
     {{link[0].label}}
   </a>
   <a mat-tab-link
-     *ngIf="loggedIn"
+     *ngIf="loggedIn && accountType=='prescriber'"
      [routerLink]="link[1].path"
      routerLinkActive #rla="routerLinkActive"
      [active]="rla.isActive">
     {{link[1].label}}
+  </a>
+  <a mat-tab-link
+     *ngIf="loggedIn && accountType=='user'"
+     [routerLink]="link[4].path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link[4].label}}
   </a>
   <a mat-tab-link
      *ngIf="loggedIn"

@@ -24,9 +24,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   accountType = "";
   link = [
     {path: '/home', label: 'Home'},
-    {path: '/medications', label: 'Medications'},
+    {path: '/prescriptions', label: 'Enter a Prescription'},
     {path: '/userinfo', label: 'User Info'},
-    {path: '/orderhistory', label: 'Order History'}
+    {path: '/orderhistory', label: 'Order History'},
+    {path: '/viewprescriptions', label: "View Active Prescriptions"}
   ];
   login = {path: '/login', label: 'Login'};
   logout = {path: '/home', label: 'Logout'};

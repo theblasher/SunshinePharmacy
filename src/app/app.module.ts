@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderComponent} from "./components/header/header-component";
 import {MatTabsModule} from "@angular/material/tabs";
 import {RouterModule, Routes} from "@angular/router";
-import {MedicationsComponent} from "./components/medications/medications.component";
+import {PrescriptionsComponent} from "./components/prescriptions/prescriptions.component";
 import {UserInfoComponent} from "./components/user-info/user-info-component";
 import {FooterComponent} from "./components/footer/footer-component";
 import {HomePageComponent} from "./components/home-page/home-page-component";
@@ -39,15 +39,17 @@ import {AuthGuardLoginService} from "./services/auth-guard-login.service";
 import {ChangeUsertypeDialogComponent} from "./components/change-usertype-dialog/change-usertype-dialog.component";
 import {OrderHistoryComponent} from "./components/order-history/order-history.component";
 import {AuthGuardAdminService} from "./services/auth-guard-admin.service";
+import {ViewActivePrescriptionsComponent} from "./components/view-active-prescriptions/view-active-prescriptions.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomePageComponent},
-  {path: 'medications', component: MedicationsComponent, canActivate: [AuthGuardLoginService]},
+  {path: 'prescriptions', component: PrescriptionsComponent, canActivate: [AuthGuardLoginService]},
   {path: 'userinfo', component: UserInfoComponent, canActivate: [AuthGuardLoginService]},
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component: RegisterPageComponent},
   {path: 'orderhistory', component: OrderHistoryComponent, canActivate: [AuthGuardAdminService]},
+  {path: 'viewprescriptions', component: ViewActivePrescriptionsComponent, canActivate: [AuthGuardLoginService]},
   {path: '**', redirectTo: '/home'}
 ];
 
@@ -55,7 +57,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    MedicationsComponent,
+    PrescriptionsComponent,
     UserInfoComponent,
     FooterComponent,
     HomePageComponent,
@@ -66,7 +68,8 @@ const routes: Routes = [
     CheckoutDialogComponent,
     OrderConfirmDialogComponent,
     ChangeUsertypeDialogComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    ViewActivePrescriptionsComponent
   ],
   imports: [
     CommonModule,

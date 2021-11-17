@@ -41,7 +41,8 @@ export class UserInfoComponent implements OnInit {
       ];
 
       this.tableData.data = await this.userInfoService.getAdminUserInfo();
-    } else if (this.userInfoService.userInfo[0].User_Type == "user") {
+    } else if (this.userInfoService.userInfo[0].User_Type == "user" ||
+      this.userInfoService.userInfo[0].User_Type == "prescriber") {
       this.displayedColumnsTitles = [
         "Username",
         "First Name",

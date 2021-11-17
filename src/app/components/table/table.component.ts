@@ -53,7 +53,7 @@ export class TableComponent implements AfterViewInit {
   onClick(element: any) {
     if (this.userInfoService.userInfo[0].User_Type == "admin") {
       this.userInfoService.openAccountChangeDialog(element);
-    } else if (this.userInfoService.userInfo[0].User_Type == "user") {
+    } else if (this.userInfoService.userInfo[0].User_Type == "prescriber") {
       this.medService.openConfirmationDialog(element);
     }
   }

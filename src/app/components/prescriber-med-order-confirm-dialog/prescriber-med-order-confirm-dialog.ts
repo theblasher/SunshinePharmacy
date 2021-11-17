@@ -4,6 +4,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MedicationsService} from "../../services/medications.service";
 import {CheckoutDialogComponent} from "../checkout-dialog/checkout-dialog.component";
 import {UserInfoService} from "../../services/user-info.service";
+import {EncryptionService} from "../../services/encryption.service";
+import {PrescriptionService} from "../../services/prescription.service";
 
 @Component({
   selector: 'medications-confirm-component',
@@ -11,7 +13,7 @@ import {UserInfoService} from "../../services/user-info.service";
   styleUrls: ['./prescriber-med-order-confirm-dialog.component.css']
 })
 export class PrescriberMedOrderConfirmDialog implements OnInit {
-  medicationName!: string;
+  medicationName = this.medService.medicationConfirm.ProprietaryName;
   color = "primary";
   confirmationForm!: FormGroup;
 
@@ -77,16 +79,19 @@ export class PrescriberMedOrderConfirmDialog implements OnInit {
               private matDialog: MatDialog,
               private formBuilder: FormBuilder,
               private medService: MedicationsService,
-              private userInfoService: UserInfoService) {
+              private userInfoService: UserInfoService,
+              private encryptionService: EncryptionService,
+              private prescriptionService: PrescriptionService) {
   }
 
   ngOnInit() {
     this.confirmationForm = this.formBuilder.group({
-      medication: this.medicationName,
+      medication: this.medService.medicationConfirm.ProprietaryName,
+      medicationQuantity: new FormControl('', Validators.required),
+      medicationFrequency: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
       prescriberFirstName: this.prescriberFirstName,
       prescriberLastName: this.prescriberLastName,
-      officeNumber: new FormControl('', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
       patientFirstName: new FormControl('', Validators.required),
       patientLastName: new FormControl('', Validators.required),
       patientStreet: new FormControl('', Validators.required),
@@ -95,18 +100,30 @@ export class PrescriberMedOrderConfirmDialog implements OnInit {
       patientZipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(5)]),
       patientDOB: new FormControl('', Validators.required)
     });
-
-    this.medicationName = this.medService.medicationConfirm.SubstanceName;
   }
 
-  onSubmit() {
+  async onSubmit() {
+    this.confirmationForm.setValue({
+      medication: this.encryptionService.encrypt(this.confirmationForm.value.medication),
+      medicationQuantity: this.encryptionService.encrypt(this.confirmationForm.value.medicationQuantity),
+      medicationFrequency: this.encryptionService.encrypt(this.confirmationForm.value.medicationFrequency),
+      type: this.encryptionService.encrypt(this.confirmationForm.value.type),
+      prescriberFirstName: this.encryptionService.encrypt(this.prescriberFirstName),
+      prescriberLastName: this.encryptionService.encrypt(this.prescriberLastName),
+      patientFirstName: this.encryptionService.encrypt(this.confirmationForm.value.patientFirstName),
+      patientLastName: this.encryptionService.encrypt(this.confirmationForm.value.patientLastName),
+      patientStreet: this.encryptionService.encrypt(this.confirmationForm.value.patientStreet),
+      patientCity: this.encryptionService.encrypt(this.confirmationForm.value.patientCity),
+      patientState: this.encryptionService.encrypt(this.confirmationForm.value.patientState),
+      patientZipCode: this.encryptionService.encrypt(this.confirmationForm.value.patientZipCode),
+      patientDOB: this.encryptionService.encrypt(this.confirmationForm.value.patientDOB)
+
+    });
     console.warn('Your order has been submitted', this.confirmationForm.value);
-    // this.medService.saveMedConfirmation(this.confirmationForm.value);
+    await this.prescriptionService.savePrescriptionInfo(this.confirmationForm.value);
     this.confirmationForm.reset();
 
     this.dialogRef.close();
-
-    // this.matDialog.open(CheckoutDialogComponent);
   }
 
   onCancel() {
