@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MedicationsService} from "../../services/medications.service";
 import {UserInfoService} from "../../services/user-info.service";
 import {OrderService} from "../../services/order.service";
 import {PrescriptionService} from "../../services/prescription.service";
+import {EncryptionService} from "../../services/encryption.service";
+import {SnackbarService} from "../../services/snackbar.service";
 
 @Component({
   selector: 'medications-confirm-component',
@@ -86,8 +88,10 @@ export class CheckoutDialogComponent implements OnInit {
               private formBuilder: FormBuilder,
               private medService: MedicationsService,
               private orderService: OrderService,
+              private snackbarService: SnackbarService,
               private userInfoService: UserInfoService,
-              private prescriptionService: PrescriptionService) {
+              private prescriptionService: PrescriptionService,
+              private encryptionService: EncryptionService) {
   }
 
   ngOnInit() {
@@ -100,13 +104,29 @@ export class CheckoutDialogComponent implements OnInit {
     this.medicationFrequency = this.prescriptionService.openedPrescription.Medication_Frequency;
   }
 
+  async buildFormDataForCheckoutValidation() {
+    const userInfoData = new FormData();
+    userInfoData.append('streetAddress', this.encryptionService.encrypt(this.checkoutConfirmationForm.value.streetAddress));
+    userInfoData.append('id', this.medicationID.toString());
+    userInfoData.append('city', this.encryptionService.encrypt(this.checkoutConfirmationForm.value.city));
+    userInfoData.append('patientDOB', this.encryptionService.encrypt(this.userInfoService.userInfo[0].DOB));
+    userInfoData.append('state', this.encryptionService.encrypt(this.checkoutConfirmationForm.value.state));
+    userInfoData.append('zipCode', this.encryptionService.encrypt(this.checkoutConfirmationForm.value.zipCode));
+    return userInfoData;
+  }
+
   async onSubmit() {
     console.warn('Your order has been submitted', this.checkoutConfirmationForm.value);
-    this.orderService.openOrderConfirmation();
+    let isValidated = await this.orderService.validateOrder(await this.buildFormDataForCheckoutValidation());
+    if (!isValidated){
+      this.snackbarService.openSnackBarOrderConfirmationFailed();
+    }
+    else if (isValidated){
+      this.orderService.openOrderConfirmation();
+    }
     // await this.saveData(this.checkoutConfirmationForm.value);
     // this.orderService.saveLastFourOfCreditCard(this.checkoutConfirmationForm.value.cardNum)
     // this.checkoutConfirmationForm.reset();
-
     this.dialogRef.close();
   }
 

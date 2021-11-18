@@ -17,6 +17,7 @@ export class OrderService {
 
   SERVER_URL: string = Constants.SERVER_URL + "insertorder.php/";
   SERVER_URL_ORDER_HISTORY: string = Constants.SERVER_URL + "vieworders.php/";
+  SERVER_URL_VALIDATE_INFO: string = Constants.SERVER_URL + "validateprescriptionorder.php/";
 
   public orders !: OrderHistory[];
 
@@ -29,6 +30,10 @@ export class OrderService {
 
   public openOrderConfirmation() {
     this.matDialog.open(EnterPaymentComponent);
+  }
+
+  public async validateOrder(validateForm: FormData) {
+    return await this.http.post<boolean>(this.SERVER_URL_VALIDATE_INFO, validateForm).toPromise();
   }
 
 

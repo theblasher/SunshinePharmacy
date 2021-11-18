@@ -57,5 +57,9 @@ export class SnackbarService {
     this.snackbar.open("ERROR: Something happened. The prescription was not successfully submitted!", "OK", {duration: 5000});
   }
 
+  public openSnackBarOrderConfirmationFailed() {
+    this.snackbar.open("ERROR: The info you entered is not correct. Try again or contact the pharmacist.", "OK", {duration: 5000});
+  }
+
 
 }
