@@ -120,7 +120,7 @@ export class PrescriptionsComponent implements OnInit {
         "NDC_Exclude_Flag",
         "Listing_Record_Certified_Through"
       ];
-    }else if (userInfo.User_Type == "user") {
+    } else if (userInfo.User_Type == "user") {
       this.displayedColumnsTitles = [
         "Select?",
         "Brand Name",

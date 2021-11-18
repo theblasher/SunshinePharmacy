@@ -5,12 +5,16 @@ import * as CryptoJS from 'crypto-js';
   providedIn: 'root'
 })
 export class EncryptionService {
-  encrypt(valueToBeEncrypted: string){
-    return CryptoJS.AES.encrypt(valueToBeEncrypted.trim(), '3').toString();
+  secretKey = CryptoJS.enc.Hex.parse('000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f');
+
+  encrypt(value: string): string {
+    let text = CryptoJS.AES.encrypt(value, this.secretKey, {mode: CryptoJS.mode.ECB});
+    return text.toString();
   }
 
-  decrypt(valueToBeDencrypted: string){
-    return CryptoJS.AES.decrypt(valueToBeDencrypted,"3").toString(CryptoJS.enc.Utf8);
+  decrypt(textToDecrypt: string) {
+    var decrypted = CryptoJS.AES.decrypt(textToDecrypt.toString(), this.secretKey, {mode: CryptoJS.mode.ECB});
+    return decrypted.toString(CryptoJS.enc.Utf8);
   }
 
 }

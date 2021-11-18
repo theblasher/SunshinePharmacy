@@ -43,11 +43,9 @@ export class UserInfoService {
     console.log(this.userInfo[0].User_Type)
     if (this.userInfo[0].User_Type == "admin") {
       this.watchAccountStatus.next("admin");
-    }
-    else if (this.userInfo[0].User_Type == "user") {
+    } else if (this.userInfo[0].User_Type == "user") {
       this.watchAccountStatus.next("user");
-    }
-    else if (this.userInfo[0].User_Type == "prescriber") {
+    } else if (this.userInfo[0].User_Type == "prescriber") {
       this.watchAccountStatus.next("prescriber");
     }
     return this.userInfo;

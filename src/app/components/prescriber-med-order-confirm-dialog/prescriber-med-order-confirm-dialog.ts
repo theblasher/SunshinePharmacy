@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MedicationsService} from "../../services/medications.service";
-import {CheckoutDialogComponent} from "../checkout-dialog/checkout-dialog.component";
 import {UserInfoService} from "../../services/user-info.service";
 import {EncryptionService} from "../../services/encryption.service";
 import {PrescriptionService} from "../../services/prescription.service";
