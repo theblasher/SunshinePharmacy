@@ -1,4 +1,5 @@
 export interface ActivePrescriptions {
+  ID: number,
   Medication: string,
   Medication_Quantity: string,
   Medication_Frequency: string,

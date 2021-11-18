@@ -1,103 +1,75 @@
-<mat-card-title mat-dialog-title>Checkout</mat-card-title>
+<mat-card-title mat-dialog-title>Ready to Purchase? Confirm Your Information!</mat-card-title>
 <mat-dialog-content [formGroup]="checkoutConfirmationForm" align="center">
-
-  <mat-form-field appearance="fill">
-    <mat-label>Medication</mat-label>
-    <input type="text"
-           aria-label="Medication"
-           matInput
-           id="medication"
-           formControlName="medication"
-           [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option [value]="medicationConfirmName">
-        {{medicationConfirmName}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>New/Refill</mat-label>
-    <input type="text"
-           aria-label="New/Refill"
-           matInput
-           id="medicationType"
-           formControlName="medicationType"
-           [matAutocomplete]="auto1">
-    <mat-autocomplete #auto1="matAutocomplete">
-      <mat-option [value]="medicationType">
-        {{medicationType}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>Street Address</mat-label>
-    <input id="streetAddress"
-           formControlName="streetAddress" matInput placeholder="Street Address">
-  </mat-form-field>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>City</mat-label>
-    <input id="city"
-           formControlName="city" matInput placeholder="City">
-  </mat-form-field>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>State</mat-label>
-    <mat-select id="state"
-                formControlName="state">
-      <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>Zip Code</mat-label>
-    <input id="zipCode"
-           formControlName="zipCode" matInput placeholder="Zip Code" maxlength="5">
-  </mat-form-field>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>Card Number</mat-label>
-    <input id="cardNum"
-           formControlName="cardNum"
-           matInput
-           placeholder="Card Number"
-           maxlength="16">
-  </mat-form-field>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>Expiration Date</mat-label>
-    <input id="expirationDate"
-           type="month"
-           formControlName="expirationDate"
-           matInput
-           placeholder="Expiration Date">
-  </mat-form-field>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>CVV</mat-label>
-    <input id="pin"
-           formControlName="cvv"
-           matInput
-           placeholder="cvv"
-           maxlength="3">
-  </mat-form-field>
-
-
+  <table>
+    <tr>
+      <td>Medication:</td>
+      <td>{{medicationName}}</td>
+    </tr>
+    <tr>
+      <td>Prescribed By:</td>
+      <td>{{prescriberName}}</td>
+    </tr>
+    <tr>
+      <td>New or Refill?:</td>
+      <td>{{medicationType}}</td>
+    </tr>
+    <tr>
+      <td>Medication Quantity?:</td>
+      <td>{{medicationQuantity}}</td>
+    </tr>
+    <tr>
+      <td>How Often Should I Take This?:</td>
+      <td>{{medicationFrequency}}</td>
+    </tr>
+    <tr>
+      <td>Confirm Street Address:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="streetAddress"
+                 formControlName="streetAddress"
+                 matInput
+                 placeholder="Street Address">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Confirm City:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="city"
+                 formControlName="city"
+                 matInput
+                 placeholder="City">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Confirm State:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-select id="state"
+                      formControlName="state"
+                      placeholder="State">
+            <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Confirm Zip Code:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="zipCode"
+                 formControlName="zipCode" matInput placeholder="Zip Code" maxlength="5">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
   <button type="submit" color="primary" mat-button (click)="onSubmit()" [disabled]="!checkoutConfirmationForm.valid">
-    Checkout
+    Proceed to Payment
   </button>
   <button mat-button color="primary" type="button" (click)="onCancel()">
     Cancel

@@ -5,19 +5,28 @@ import {SnackbarService} from "./snackbar.service";
 import {ActivePrescriptions} from "../models/active-prescriptions";
 import {UserInfoService} from "./user-info.service";
 import {EncryptionService} from "./encryption.service";
+import {MatDialog} from "@angular/material/dialog";
+import {CheckoutDialogComponent} from "../components/checkout-dialog/checkout-dialog.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrescriptionService {
   activePrescriptions !: ActivePrescriptions[];
+  openedPrescription !: ActivePrescriptions;
   VIEW_CURRENT_PRESCRIPTION_SERVER_URL: string = Constants.SERVER_URL + "viewcurrentpres.php/";
   SUBMIT_PRESCRIPTION_SERVER_URL: string = Constants.SERVER_URL + "insertprescription.php/";
 
   constructor(private http: HttpClient,
               private snackbarService: SnackbarService,
               private userInfoService: UserInfoService,
-              private encryptionService: EncryptionService) {
+              private encryptionService: EncryptionService,
+              private matDialog: MatDialog) {
+  }
+
+  public openPrescriptionDialog(element: ActivePrescriptions) {
+    this.openedPrescription = element;
+    this.matDialog.open(CheckoutDialogComponent);
   }
 
   public async getActivePrescriptions() {

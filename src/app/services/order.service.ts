@@ -5,11 +5,15 @@ import {MatDialog} from "@angular/material/dialog";
 import {OrderConfirmDialogComponent} from "../components/order-confirm-dialog/order-confirm-dialog.component";
 import {Constants} from "../shared/constants";
 import {OrderHistory} from "../models/order-history";
+import {OrderInformation} from "../models/order-information";
+import {EnterPaymentComponent} from "../components/enter-payment/enter-payment.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+
+  orderInformation !: OrderInformation;
 
   SERVER_URL: string = Constants.SERVER_URL + "insertorder.php/";
   SERVER_URL_ORDER_HISTORY: string = Constants.SERVER_URL + "vieworders.php/";
@@ -22,6 +26,11 @@ export class OrderService {
               private snackbarService: SnackbarService,
               private matDialog: MatDialog) {
   }
+
+  public openOrderConfirmation() {
+    this.matDialog.open(EnterPaymentComponent);
+  }
+
 
   public saveLastFourOfCreditCard(cardNum: string) {
     this.cardNum = cardNum;
@@ -41,13 +50,9 @@ export class OrderService {
         this.snackbarService.openSnackBarCheckoutSuccess();
       },
       error => {
-        this.openSnackBarFailed();
+        this.snackbarService.openSnackBarCheckoutFailed();
       }
     );
-  }
-
-  public openSnackBarFailed() {
-    this.snackbarService.openSnackBarCheckoutFailed();
   }
 
 }

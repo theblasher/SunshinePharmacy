@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MedicationsService} from "../../services/medications.service";
-import {DatePipe} from "@angular/common";
 import {UserInfoService} from "../../services/user-info.service";
 import {OrderService} from "../../services/order.service";
+import {PrescriptionService} from "../../services/prescription.service";
 
 @Component({
   selector: 'medications-confirm-component',
@@ -12,8 +12,11 @@ import {OrderService} from "../../services/order.service";
   styleUrls: ['./checkout-dialog.component.css']
 })
 export class CheckoutDialogComponent implements OnInit {
-  medicationConfirmName!: string;
-  prescriberLastName!: string;
+  medicationName!: string;
+  medicationID!: number;
+  prescriberName!: string;
+  medicationQuantity!: string;
+  medicationFrequency!: string;
   officePhoneNumber!: string;
   color = "primary";
 
@@ -71,18 +74,10 @@ export class CheckoutDialogComponent implements OnInit {
   ];
 
   checkoutConfirmationForm = this.formBuilder.group({
-    firstName: this.userInfoService.userInfo[0].First_Name,
-    lastName: this.userInfoService.userInfo[0].Last_Name,
-    medication: new FormControl('', Validators.required),
-    medicationType: new FormControl('', Validators.required),
     streetAddress: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
-    zipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(5)]),
-    date: this.datePipe.transform(Date(), 'yyyy-MM-dd'),
-    cardNum: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(16)]),
-    expirationDate: new FormControl('', Validators.required),
-    cvv: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(3)])
+    zipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(5)])
   });
 
   medicationType !: string;
@@ -91,41 +86,39 @@ export class CheckoutDialogComponent implements OnInit {
               private formBuilder: FormBuilder,
               private medService: MedicationsService,
               private orderService: OrderService,
-              private datePipe: DatePipe,
-              private userInfoService: UserInfoService) {
+              private userInfoService: UserInfoService,
+              private prescriptionService: PrescriptionService) {
   }
 
   ngOnInit() {
-    this.prescriberLastName = this.medService.medicationOrderInformation.prescriberLastName;
-    this.officePhoneNumber = this.medService.medicationOrderInformation.officeNumber;
-    this.medicationConfirmName = this.medService.medicationConfirm.SubstanceName;
-    this.medicationType = this.medService.medicationOrderInformation.type;
+    this.medicationName = this.prescriptionService.openedPrescription.Medication;
+    this.medicationID = this.prescriptionService.openedPrescription.ID;
+    this.medicationType = this.prescriptionService.openedPrescription.Medication_Type;
+    this.prescriberName = this.prescriptionService.openedPrescription.Prescriber_First_Name + " " + this.prescriptionService
+      .openedPrescription.Prescriber_Last_Name;
+    this.medicationQuantity = this.prescriptionService.openedPrescription.Medication_Quantity;
+    this.medicationFrequency = this.prescriptionService.openedPrescription.Medication_Frequency;
   }
 
   async onSubmit() {
     console.warn('Your order has been submitted', this.checkoutConfirmationForm.value);
-    await this.saveData(this.checkoutConfirmationForm.value);
-    this.orderService.saveLastFourOfCreditCard(this.checkoutConfirmationForm.value.cardNum)
-    this.checkoutConfirmationForm.reset();
+    this.orderService.openOrderConfirmation();
+    // await this.saveData(this.checkoutConfirmationForm.value);
+    // this.orderService.saveLastFourOfCreditCard(this.checkoutConfirmationForm.value.cardNum)
+    // this.checkoutConfirmationForm.reset();
 
     this.dialogRef.close();
   }
 
   async saveData(values: any) {
-    const checkoutData = new FormData();
-    checkoutData.append('firstName', values.firstName);
-    checkoutData.append('lastName', values.lastName);
-    checkoutData.append('medication', values.medication);
-    checkoutData.append('medicationType', values.medicationType);
-    checkoutData.append('prescriberLastName', this.prescriberLastName);
-    checkoutData.append('officePhoneNumber', this.officePhoneNumber);
-    checkoutData.append('streetAddress', values.streetAddress);
-    checkoutData.append('city', values.city);
-    checkoutData.append('state', values.state);
-    checkoutData.append('zipCode', values.zipCode);
-    checkoutData.append('date', values.date);
+    const confirmInformation = new FormData();
+    confirmInformation.append('id', this.medicationID.toString());
+    confirmInformation.append('streetAddress', values.streetAddress);
+    confirmInformation.append('city', values.city);
+    confirmInformation.append('state', values.state);
+    confirmInformation.append('zipCode', values.zipCode);
 
-    await this.orderService.checkoutSubmission(checkoutData);
+    // await this.orderService.checkoutSubmission(confirmInformation);
   }
 
   onCancel() {

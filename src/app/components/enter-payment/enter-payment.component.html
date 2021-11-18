@@ -1,0 +1,52 @@
+<mat-card-title mat-dialog-title>Enter Payment Information to Purchase: {{medicationName}}</mat-card-title>
+<mat-dialog-content [formGroup]="paymentForm" align="center">
+  <table>
+    <tr>
+      <td>Prescribed By:</td>
+      <td>{{prescriber}}</td>
+    </tr>
+    <tr>
+      <td>Card Number:</td>
+      <mat-form-field class="ngx-cc-form-field">
+        <ngx-cc id="cardNum"
+                styleClass="card"
+                maxlength="16"
+                formControlName="cardNum">
+        </ngx-cc>
+      </mat-form-field>
+    </tr>
+    <tr>
+      <td>Expiration Date:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="expirationDate"
+                 type="month"
+                 formControlName="expirationDate"
+                 matInput
+                 placeholder="Expiration Date">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Card CVV:</td>
+      <td>
+        <mat-form-field appearance="fill">
+          <input id="pin"
+                 formControlName="cvv"
+                 matInput
+                 placeholder="cvv"
+                 maxlength="3">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button type="submit" color="primary" mat-button (click)="onSubmit()" [disabled]="!paymentForm.valid">
+    Submit Order
+  </button>
+  <button mat-button color="primary" type="button" (click)="onCancel()">
+    Cancel
+  </button>
+</mat-dialog-actions>

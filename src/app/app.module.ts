@@ -40,6 +40,7 @@ import {ChangeUsertypeDialogComponent} from "./components/change-usertype-dialog
 import {OrderHistoryComponent} from "./components/order-history/order-history.component";
 import {AuthGuardAdminService} from "./services/auth-guard-admin.service";
 import {ViewActivePrescriptionsComponent} from "./components/view-active-prescriptions/view-active-prescriptions.component";
+import {EnterPaymentComponent} from "./components/enter-payment/enter-payment.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -69,7 +70,8 @@ const routes: Routes = [
     OrderConfirmDialogComponent,
     ChangeUsertypeDialogComponent,
     OrderHistoryComponent,
-    ViewActivePrescriptionsComponent
+    ViewActivePrescriptionsComponent,
+    EnterPaymentComponent
   ],
   imports: [
     CommonModule,

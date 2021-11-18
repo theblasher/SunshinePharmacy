@@ -4,7 +4,7 @@ import {Medications} from "../models/medications";
 import {MatDialog} from "@angular/material/dialog";
 import {PrescriberMedOrderConfirmDialog} from "../components/prescriber-med-order-confirm-dialog/prescriber-med-order-confirm-dialog";
 import {MedicationsConfirmation} from "../models/medications-confirmation";
-import {OrderConfirmation} from "../models/order-confirmation";
+import {OrderInformation} from "../models/order-information";
 import {Constants} from "../shared/constants";
 
 
@@ -17,7 +17,7 @@ export class MedicationsService {
   public medications !: Medications[];
 
   public medicationOrderInformation !: MedicationsConfirmation;
-  public orderInformation !: OrderConfirmation;
+  public orderInformation !: OrderInformation;
 
   public medicationConfirm !: Medications;
 
@@ -34,7 +34,7 @@ export class MedicationsService {
     this.medicationOrderInformation = confirmationMed;
   }
 
-  public openConfirmationDialog(element: Medications) {
+  public openPrescriberOrderDialog(element: Medications) {
     this.medicationConfirm = element;
     this.matDialog.open(PrescriberMedOrderConfirmDialog);
   }
