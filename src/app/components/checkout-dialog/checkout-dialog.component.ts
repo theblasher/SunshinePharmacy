@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MedicationsService} from "../../services/medications.service";
 import {UserInfoService} from "../../services/user-info.service";
 import {OrderService} from "../../services/order.service";
@@ -19,7 +19,6 @@ export class CheckoutDialogComponent implements OnInit {
   prescriberName!: string;
   medicationQuantity!: string;
   medicationFrequency!: string;
-  officePhoneNumber!: string;
   color = "primary";
 
   states: string[] = [
@@ -118,10 +117,20 @@ export class CheckoutDialogComponent implements OnInit {
   async onSubmit() {
     console.warn('Your order has been submitted', this.checkoutConfirmationForm.value);
     let isValidated = await this.orderService.validateOrder(await this.buildFormDataForCheckoutValidation());
-    if (!isValidated){
+    if (!isValidated) {
       this.snackbarService.openSnackBarOrderConfirmationFailed();
-    }
-    else if (isValidated){
+    } else if (isValidated) {
+      this.orderService.orderInformation.ordererID = this.userInfoService.userInfo[0].ID;
+      this.orderService.orderInformation.firstName = this.userInfoService.userInfo[0].First_Name;
+      this.orderService.orderInformation.lastName = this.userInfoService.userInfo[0].Last_Name;
+      this.orderService.orderInformation.medication = this.prescriptionService.openedPrescription.Medication;
+      this.orderService.orderInformation.medicationType = this.prescriptionService.openedPrescription.Medication_Type;
+      this.orderService.orderInformation.prescriberLastName = this.prescriptionService.openedPrescription.Prescriber_Last_Name;
+      this.orderService.orderInformation.streetAddress = this.checkoutConfirmationForm.value.streetAddress;
+      this.orderService.orderInformation.city = this.checkoutConfirmationForm.value.city;
+      this.orderService.orderInformation.state = this.checkoutConfirmationForm.value.state;
+      this.orderService.orderInformation.zipCode = this.checkoutConfirmationForm.value.state;
+      this.checkoutConfirmationForm.reset();
       this.orderService.openOrderConfirmation();
     }
     // await this.saveData(this.checkoutConfirmationForm.value);

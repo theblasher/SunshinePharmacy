@@ -41,6 +41,7 @@ export class UserInfoService {
   public async getUserInfoForLoggedInUser() {
     this.userInfo = await this.http.post<UserInfo[]>(this.SERVER_URL_USER_INFO, this.loginData).toPromise();
     console.log(this.userInfo[0].User_Type)
+    console.log(this.userInfo[0].ID)
     if (this.userInfo[0].User_Type == "admin") {
       this.watchAccountStatus.next("admin");
     } else if (this.userInfo[0].User_Type == "user") {

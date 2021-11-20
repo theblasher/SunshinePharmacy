@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {MatDialogRef} from "@angular/material/dialog";
 import {PrescriptionService} from "../../services/prescription.service";
+import {OrderService} from "../../services/order.service";
 
 @Component({
   selector: 'enter-payment-component',
@@ -22,7 +23,8 @@ export class EnterPaymentComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<EnterPaymentComponent>,
               private formBuilder: FormBuilder,
               private datePipe: DatePipe,
-              private prescriptionService: PrescriptionService) {
+              private prescriptionService: PrescriptionService,
+              private orderService: OrderService) {
   }
 
   ngOnInit() {
@@ -31,8 +33,12 @@ export class EnterPaymentComponent implements OnInit {
       this.prescriptionService.openedPrescription.Prescriber_Last_Name;
   }
 
-  onSubmit() {
+  async onSubmit() {
     console.warn('Your order has been submitted', this.paymentForm.value);
+    this.dialogRef.close();
+    await this.orderService.saveLastFourOfCreditCard(this.paymentForm.value.cardNum);
+    await this.orderService.checkoutSubmission(this.orderService.orderInformation);
+    this.orderService.openCheckoutConfirmation();
   }
 
   onCancel() {
