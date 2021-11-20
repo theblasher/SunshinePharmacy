@@ -38,7 +38,6 @@ export class EnterPaymentComponent implements OnInit {
     this.dialogRef.close();
     await this.orderService.saveLastFourOfCreditCard(this.paymentForm.value.cardNum);
     await this.orderService.checkoutSubmission(this.orderService.orderInformation);
-    this.orderService.openCheckoutConfirmation();
   }
 
   onCancel() {

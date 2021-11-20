@@ -133,9 +133,7 @@ export class CheckoutDialogComponent implements OnInit {
       this.checkoutConfirmationForm.reset();
       this.orderService.openOrderConfirmation();
     }
-    // await this.saveData(this.checkoutConfirmationForm.value);
-    // this.orderService.saveLastFourOfCreditCard(this.checkoutConfirmationForm.value.cardNum)
-    // this.checkoutConfirmationForm.reset();
+
     this.dialogRef.close();
   }
 

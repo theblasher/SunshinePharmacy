@@ -22,7 +22,6 @@ export class UserInfoComponent implements OnInit {
   }
 
   async ngOnInit() {
-    console.log(this.userInfoService.userInfo[0].User_Type);
     if (this.userInfoService.userInfo[0].User_Type == "admin") {
       this.displayedColumnsTitles = [
         "Change Account Type?",

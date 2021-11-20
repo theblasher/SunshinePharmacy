@@ -37,9 +37,7 @@ export class PrescriptionService {
   }
 
   public async decryptActivePrescriptions(activePrescriptions: ActivePrescriptions[]) {
-    console.log(activePrescriptions.length)
     for (let i = 0; i < activePrescriptions.length; i++) {
-      console.log(this.activePrescriptions[i].Prescriber_First_Name);
       this.activePrescriptions[i].Prescriber_First_Name = this.encryptionService.decrypt(this.activePrescriptions[i].Prescriber_First_Name);
       this.activePrescriptions[i].Prescriber_Last_Name = this.encryptionService.decrypt(this.activePrescriptions[i].Prescriber_Last_Name);
       this.activePrescriptions[i].Medication = this.encryptionService.decrypt(this.activePrescriptions[i].Medication);

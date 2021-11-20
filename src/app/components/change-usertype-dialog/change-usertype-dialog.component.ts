@@ -22,7 +22,6 @@ export class ChangeUsertypeDialogComponent implements OnInit {
 
   async ngOnInit() {
     this.userAccountTypeBeforeChange = this.userInfoService.userAccountToChange.User_Type;
-    console.log(this.userAccountTypeBeforeChange)
     this.userNameToChange = this.userInfoService.userAccountToChange.Username;
     if (this.userAccountTypeBeforeChange == "admin") {
       this.userAccountTypeToChangeTo = "user"
@@ -41,7 +40,6 @@ export class ChangeUsertypeDialogComponent implements OnInit {
   }
 
   onCancel() {
-    console.log("It will be cancelled");
     this.dialogRef.close();
   }
 
