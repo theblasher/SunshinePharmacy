@@ -1,4 +1,6 @@
-<table-component [dataSource]="tableData"
+<table-component *ngIf="!isNull"
+                 [dataSource]="tableData"
                  [displayedColumnTitles]="displayedColumnsTitles"
                  [displayedColumns]="displayedColumns">
 </table-component>
+<h1 *ngIf="isNull">You have not ordered anything yet!</h1>

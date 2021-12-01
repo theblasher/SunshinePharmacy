@@ -29,13 +29,20 @@ export class OrderHistoryComponent implements OnInit {
     "Date_Of_Order"
   ];
 
+  isNull = false;
+
   constructor(private orderService: OrderService,
               private userInfoService: UserInfoService,
               private encryptionService: EncryptionService) {
   }
 
   async ngOnInit() {
-    await this.orderService.getOrderHistory(this.encryptionService.encrypt(this.userInfoService.userInfo[0].ID.toString()));
-    this.tableData.data = this.orderService.orders;
+    let getOrders = await this.orderService.getOrderHistory(this.encryptionService.encrypt(this.userInfoService.userInfo[0].ID.toString()));
+    if (getOrders == "null") {
+      this.isNull = true;
+    } else {
+      this.tableData.data = this.orderService.orders;
+    }
+
   }
 }

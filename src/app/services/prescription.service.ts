@@ -32,6 +32,9 @@ export class PrescriptionService {
   public async getActivePrescriptions() {
     let userDataForm = await this.buildFormDataForActivePrescriptions();
     this.activePrescriptions = await this.http.post<ActivePrescriptions[]>(this.VIEW_CURRENT_PRESCRIPTION_SERVER_URL, userDataForm).toPromise();
+    if (this.activePrescriptions == null) {
+      return "null";
+    }
     await this.decryptActivePrescriptions(this.activePrescriptions);
     return this.activePrescriptions;
   }

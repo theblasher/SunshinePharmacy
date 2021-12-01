@@ -13,31 +13,37 @@ export class ViewActivePrescriptionsComponent implements OnInit {
 
   displayedColumns !: string [];
 
+  isNull = false;
+
   constructor(private prescriptionService: PrescriptionService) {
   }
 
   async ngOnInit() {
-    await this.prescriptionService.getActivePrescriptions();
-    this.tableData.data = this.prescriptionService.activePrescriptions;
+    let getPrescriptions = await this.prescriptionService.getActivePrescriptions();
+    if (getPrescriptions == "null") {
+      this.isNull = true;
+    } else {
+      this.tableData.data = this.prescriptionService.activePrescriptions;
 
-    this.displayedColumnsTitles = [
-      "Purchase?",
-      "Medication",
-      "New or Refill?",
-      "Medication Quantity",
-      "Medication Frequency",
-      "Prescriber First Name",
-      "Prescriber Last Name"
-    ];
+      this.displayedColumnsTitles = [
+        "Purchase?",
+        "Medication",
+        "New or Refill?",
+        "Medication Quantity",
+        "Medication Frequency",
+        "Prescriber First Name",
+        "Prescriber Last Name"
+      ];
 
-    this.displayedColumns = [
-      "Select",
-      "Medication",
-      "Medication_Type",
-      "Medication_Quantity",
-      "Medication_Frequency",
-      "Prescriber_First_Name",
-      "Prescriber_Last_Name"
-    ];
+      this.displayedColumns = [
+        "Select",
+        "Medication",
+        "Medication_Type",
+        "Medication_Quantity",
+        "Medication_Frequency",
+        "Prescriber_First_Name",
+        "Prescriber_Last_Name"
+      ];
+    }
   }
 }

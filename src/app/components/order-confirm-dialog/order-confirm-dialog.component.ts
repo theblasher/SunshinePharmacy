@@ -24,6 +24,7 @@ export class OrderConfirmDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.cardNum);
     this.medicationName = this.prescriptionService.openedPrescription.Medication;
     this.cardNum = this.orderService.cardNum.substr(this.orderService.cardNum.length - 4);
   }

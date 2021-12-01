@@ -1,4 +1,6 @@
-<table-component [dataSource]="tableData"
-                 [displayedColumns]="displayedColumns"
-                 [displayedColumnTitles]="displayedColumnsTitles">
+<table-component *ngIf="!isNull"
+                 [dataSource]="tableData"
+                 [displayedColumnTitles]="displayedColumnsTitles"
+                 [displayedColumns]="displayedColumns">
 </table-component>
+<h1 *ngIf="isNull">A prescriber has not assigned any prescriptions to your account yet!</h1>

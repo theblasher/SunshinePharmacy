@@ -95,6 +95,9 @@ export class OrderService {
     const ordererIDData = new FormData();
     ordererIDData.append('ordererID', ordererID);
     this.orders = await this.http.post<OrderHistory[]>(this.SERVER_URL_ORDER_HISTORY, ordererIDData).toPromise();
+    if (this.orders == null) {
+      return "null"
+    }
     await this.decryptOrderHistory(this.orders);
     return this.orders;
   }

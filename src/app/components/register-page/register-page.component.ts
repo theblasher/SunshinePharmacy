@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {RegisterService} from "../../services/register.service";
 import {AuthenticationService} from "../../services/authentication.service";
 import {UserInfoService} from "../../services/user-info.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   templateUrl: './register-page.component.html',
@@ -21,12 +22,20 @@ export class RegisterPageComponent {
     reEnterPassword: new FormControl('', Validators.required)
   });
 
+  minDate: Date;
+  maxDate: Date;
+
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private registerService: RegisterService,
               private authService: AuthenticationService,
-              private userInfoService: UserInfoService) {
+              private userInfoService: UserInfoService,
+              public datePipe: DatePipe) {
+    let currentDay = new Date();
+    this.maxDate = new Date(currentDay.getFullYear() - 18, currentDay.getMonth(), currentDay.getDate());
+    this.minDate = new Date(currentDay.getFullYear() - 100, currentDay.getMonth(), currentDay.getDate());
+
   }
 
   async saveData(values: any) {
@@ -39,6 +48,8 @@ export class RegisterPageComponent {
 
     this.authService.loginData = loginData;
     this.userInfoService.loginData = loginData;
+
+    values.dateOfBirth = this.datePipe.transform(values.dateOfBirth, 'yyyy-MM-dd');
 
     const registrationData = new FormData();
     registrationData.append('firstName', values.firstName);
