@@ -11,6 +11,7 @@ import {MatTableDataSource} from "@angular/material/table";
 export class UserInfoComponent implements OnInit {
   userInfo = 'User Info';
   medications = 'Medications';
+  userProfileType!: string;
 
   tableData = new MatTableDataSource<any>([]);
 
@@ -23,6 +24,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.userProfileType = this.userInfoService.userInfo[0].User_Type;
     if (this.userInfoService.userInfo[0].User_Type == "admin") {
       this.displayedColumnsTitles = [
         "Change Account Type?",

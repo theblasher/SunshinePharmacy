@@ -5,7 +5,7 @@ import {PrescriptionService} from "../../services/prescription.service";
 @Component({
   selector: 'view-active-prescriptions-component',
   templateUrl: './view-active-prescriptions.component.html',
-  styleUrls : ['./view-active-prescriptions-component.css']
+  styleUrls: ['./view-active-prescriptions-component.css']
 })
 export class ViewActivePrescriptionsComponent implements OnInit {
   tableData = new MatTableDataSource<any>([]);
