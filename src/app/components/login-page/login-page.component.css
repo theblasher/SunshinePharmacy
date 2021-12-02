@@ -1,3 +1,8 @@
 a, a:active {
   text-decoration: #4984b8;
 }
+
+a:visited {
+  color: black;
+  text-decoration: underline;
+}

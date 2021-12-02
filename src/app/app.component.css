@@ -16,6 +16,7 @@ header-component {
 div.content {
   flex: 1;
   text-align: center;
+  background: #e8f4f8;
 }
 
 footer-component {

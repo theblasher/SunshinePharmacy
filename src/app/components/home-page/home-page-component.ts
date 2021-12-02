@@ -6,5 +6,11 @@ import {Component} from '@angular/core';
   styleUrls: ['./home-page-component.css']
 })
 export class HomePageComponent {
-  message = 'Welcome to Sunshine Pharmacy! To see your user information or order a prescription, please login!';
+  message = 'Welcome to Sunshine Pharmacy!';
+  userMessage = ' If you are here to purchase a prescription' +
+    ' that a prescriber has assigned to you, please' +
+    ' login!';
+  prescriberMessage = 'Prescribers: If you are here to input a prescription' +
+    ' for a patient, please' +
+    ' login!';
 }

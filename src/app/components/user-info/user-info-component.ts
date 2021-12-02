@@ -5,7 +5,8 @@ import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'user-info-component',
-  templateUrl: './user-info-component.html'
+  templateUrl: './user-info-component.html',
+  styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
   userInfo = 'User Info';

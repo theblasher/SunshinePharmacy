@@ -6,7 +6,8 @@ import {EncryptionService} from "../../services/encryption.service";
 
 @Component({
   selector: 'order-history-component',
-  templateUrl: './order-history.component.html'
+  templateUrl: './order-history.component.html',
+  styleUrls: ['order-history.component.css']
 })
 export class OrderHistoryComponent implements OnInit {
   tableData = new MatTableDataSource<any>([]);
