@@ -3,6 +3,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 import {UserInfoService} from "../../services/user-info.service";
 import {OrderService} from "../../services/order.service";
 import {PrescriptionService} from "../../services/prescription.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'order-confirm-component',
@@ -20,7 +21,8 @@ export class OrderConfirmDialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<OrderConfirmDialogComponent>,
               private orderService: OrderService,
               private userInfoService: UserInfoService,
-              private prescriptionService: PrescriptionService) {
+              private prescriptionService: PrescriptionService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -29,8 +31,9 @@ export class OrderConfirmDialogComponent implements OnInit {
     this.cardNum = this.orderService.cardNum.substr(this.orderService.cardNum.length - 4);
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.dialogRef.close();
+    await this.router.navigateByUrl('/home');
   }
 
 }

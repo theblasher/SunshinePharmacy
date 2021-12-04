@@ -35,10 +35,10 @@ export class EnterPaymentComponent implements OnInit {
   }
 
   async onSubmit() {
-    console.warn('Your order has been submitted', this.paymentForm.value);
     this.dialogRef.close();
     await this.orderService.saveLastFourOfCreditCard(this.paymentForm.value.cardNum);
     await this.orderService.checkoutSubmission(this.orderService.orderInformation);
+    await this.prescriptionService.deleteActivePrescriptions(this.prescriptionService.openedPrescription.ID.toString());
   }
 
   onCancel() {

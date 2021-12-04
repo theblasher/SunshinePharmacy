@@ -18,6 +18,7 @@ export class PrescriptionService {
   VIEW_CURRENT_PRESCRIPTION_SERVER_URL: string = Constants.SERVER_URL + "viewcurrentpres.php/";
   SUBMIT_PRESCRIPTION_SERVER_URL: string = Constants.SERVER_URL + "insertprescription.php/";
   VIEW_SENT_PRESCRIPTIONS_SERVER_URL: string = Constants.SERVER_URL + "viewinsertedprescription.php/";
+  DELETE_ACTIVE_PRESCRIPTION: string = Constants.SERVER_URL + "deleteactiveprescription.php/";
 
   public prescriptions !: PrescriptionHistory[];
 
@@ -41,6 +42,12 @@ export class PrescriptionService {
     }
     await this.decryptActivePrescriptions(this.activePrescriptions);
     return this.activePrescriptions;
+  }
+
+  public async deleteActivePrescriptions(activePrescriptionID: string) {
+    const activePrescriptionIDData = new FormData();
+    activePrescriptionIDData.append("prescriptionID", activePrescriptionID)
+    await this.http.post<string>(this.DELETE_ACTIVE_PRESCRIPTION, activePrescriptionIDData).toPromise();
   }
 
   public async decryptActivePrescriptions(activePrescriptions: ActivePrescriptions[]) {
