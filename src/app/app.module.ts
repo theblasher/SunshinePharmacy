@@ -42,10 +42,12 @@ import {AuthGuardAdminService} from "./services/auth-guard-admin.service";
 import {ViewActivePrescriptionsComponent} from "./components/view-active-prescriptions/view-active-prescriptions.component";
 import {EnterPaymentComponent} from "./components/enter-payment/enter-payment.component";
 import {TableUserInfoComponent} from "./components/table-userinfo/table-user-info.component";
+import {ContactUsComponent} from "./components/contact-us/contact-us.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomePageComponent},
+  {path: 'contactus', component: ContactUsComponent},
   {path: 'prescriptions', component: PrescriptionsComponent, canActivate: [AuthGuardLoginService]},
   {path: 'userinfo', component: UserInfoComponent, canActivate: [AuthGuardLoginService]},
   {path: 'login', component: LoginPageComponent},
@@ -73,7 +75,8 @@ const routes: Routes = [
     OrderHistoryComponent,
     ViewActivePrescriptionsComponent,
     EnterPaymentComponent,
-    TableUserInfoComponent
+    TableUserInfoComponent,
+    ContactUsComponent
   ],
   imports: [
     CommonModule,

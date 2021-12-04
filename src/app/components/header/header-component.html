@@ -62,5 +62,11 @@
      [active]="rla.isActive">
     {{link[5].label}}
   </a>
+  <a mat-tab-link
+     [routerLink]="link[6].path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link[6].label}}
+  </a>
 </nav>
 

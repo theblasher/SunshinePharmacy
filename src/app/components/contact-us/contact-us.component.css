@@ -1,0 +1,11 @@
+h1 {
+  font-family: American Typewriter, serif;
+  color: #3167a0;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+span {
+  text-decoration: underline;
+}
