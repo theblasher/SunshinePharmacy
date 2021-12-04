@@ -1,7 +1,10 @@
 <div>
-  <img alt="Sunshine Pharmacy Logo" src="assets/SunshinePharmacyLogo.png"
-       style="max-width: 200px;
+  <a (click)="onClick()" style="cursor: pointer">
+    <img alt="Sunshine Pharmacy Logo" src="assets/SunshinePharmacyLogo.png"
+         style="max-width: 200px;
         max-height: 200px;">
+  </a>
+
   <button type="submit"
           [routerLink]="login.path"
           mat-button

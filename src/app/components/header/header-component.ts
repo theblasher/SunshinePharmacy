@@ -3,6 +3,7 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {Subscription} from "rxjs";
 import {SnackbarService} from "../../services/snackbar.service";
 import {UserInfoService} from "../../services/user-info.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'header-component',
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthenticationService,
               private snackbarService: SnackbarService,
-              private userInfoService: UserInfoService) {
+              private userInfoService: UserInfoService,
+              private router: Router) {
   }
 
 
@@ -43,6 +45,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.watchAdminStatusSub = this.userInfoService.getAccountStatusObservable().subscribe(accountType => {
       this.accountType = accountType;
     })
+  }
+
+  onClick() {
+    this.router.navigateByUrl('/home');
   }
 
   logoutFunction() {

@@ -6,3 +6,8 @@ h1 {
   padding-top: 10px;
   padding-left: 10px;
 }
+
+h2 {
+  text-align: left !important;
+  padding-left: 10px;
+}

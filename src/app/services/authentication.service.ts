@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserInfo} from "../models/user-info";
@@ -12,14 +12,13 @@ import {Constants} from "../shared/constants";
 })
 export class AuthenticationService {
   SERVER_URL: string = Constants.SERVER_URL + "login.php/";
-  SERVER_URL_USER_INFO: string = Constants.SERVER_URL + "getuserinfo.php/";
 
   public userInfo !: UserInfo[];
   public loggedIn !: boolean;
 
   public loginData !: FormData;
 
-  public watchLoginStatus = new Subject<boolean>();
+  public watchLoginStatus = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient,
               private router: Router,

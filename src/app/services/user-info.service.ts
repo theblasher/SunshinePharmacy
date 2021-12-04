@@ -5,7 +5,7 @@ import {Constants} from "../shared/constants";
 import {MatDialog} from "@angular/material/dialog";
 import {ChangeUsertypeDialogComponent} from "../components/change-usertype-dialog/change-usertype-dialog.component";
 import {SnackbarService} from "./snackbar.service";
-import {Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class UserInfoService {
 
   public userAccountToChange !: UserInfo;
 
-  public watchAccountStatus = new Subject<string>();
+  public watchAccountStatus = new BehaviorSubject<string>("");
 
 
   constructor(private http: HttpClient,

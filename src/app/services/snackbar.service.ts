@@ -8,6 +8,10 @@ export class SnackbarService {
   constructor(private snackbar: MatSnackBar) {
   }
 
+  public openSnackBarPasswordsDoNotMatch() {
+    this.snackbar.open("Passwords Do Not Match!", "OK", {duration: 5000});
+  }
+
   public openSnackBarLoginSuccess() {
     this.snackbar.open("Login Successful!", "OK", {duration: 5000});
   }

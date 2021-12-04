@@ -1,6 +1,15 @@
-<h1 *ngIf="userProfileType == 'admin'">Application Profiles</h1>
-<h1 *ngIf="userProfileType == 'user'">Your Profile</h1>
-<table-component [dataSource]="tableData"
-                 [displayedColumnTitles]="displayedColumnsTitles"
-                 [displayedColumns]="displayedColumns">
-</table-component>
+<div *ngIf="userProfileType == 'admin'">
+  <h1>Application Profiles</h1>
+  <table-component [dataSource]="tableData"
+                   [displayedColumnTitles]="displayedColumnsTitles"
+                   [displayedColumns]="displayedColumns">
+  </table-component>
+</div>
+<div *ngIf="userProfileType == 'user'">
+  <h1>Your Profile</h1>
+  <table-user-info-component [dataSource]="tableData"
+                             [displayedColumnTitles]="displayedColumnsTitles"
+                             [displayedColumns]="displayedColumns">
+  </table-user-info-component>
+</div>
+

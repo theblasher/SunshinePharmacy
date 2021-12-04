@@ -13,10 +13,11 @@ import {OrderService} from "../../services/order.service";
 export class EnterPaymentComponent implements OnInit {
   medicationName !: string;
   prescriber !: string;
+
   paymentForm = this.formBuilder.group({
-    cardNum: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(16)]),
+    cardNum: new FormControl('', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]),
     expirationDate: new FormControl('', Validators.required),
-    cvv: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(3)]),
+    cvv: new FormControl('', Validators.required),
     dateOrdered: this.datePipe.transform(Date(), 'yyyy-MM-dd')
   })
 

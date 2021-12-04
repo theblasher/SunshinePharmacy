@@ -41,6 +41,7 @@ import {OrderHistoryComponent} from "./components/order-history/order-history.co
 import {AuthGuardAdminService} from "./services/auth-guard-admin.service";
 import {ViewActivePrescriptionsComponent} from "./components/view-active-prescriptions/view-active-prescriptions.component";
 import {EnterPaymentComponent} from "./components/enter-payment/enter-payment.component";
+import {TableUserInfoComponent} from "./components/table-userinfo/table-user-info.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -71,7 +72,8 @@ const routes: Routes = [
     ChangeUsertypeDialogComponent,
     OrderHistoryComponent,
     ViewActivePrescriptionsComponent,
-    EnterPaymentComponent
+    EnterPaymentComponent,
+    TableUserInfoComponent
   ],
   imports: [
     CommonModule,

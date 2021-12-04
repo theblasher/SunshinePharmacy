@@ -1,0 +1,34 @@
+<div class="table-responsive">
+  <mat-table
+    matSort
+    [dataSource]="dataSource">
+
+    <ng-container *ngFor="let column of displayedColumns; let i = index"
+                  [matColumnDef]="column">
+      <mat-header-cell
+        *matHeaderCellDef>
+        {{displayedColumnTitles[i]}}
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let element">
+        <mat-icon *ngIf="displayedColumns[i] == 'Select'; else elseBlock"
+                  (click)="onClick(element)"
+                  style="color: #46a35e">
+          check_circle
+        </mat-icon>
+        <ng-template #elseBlock>
+          {{element[column]}}
+        </ng-template>
+      </mat-cell>
+
+    </ng-container>
+
+
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 100, 200]"></mat-paginator>

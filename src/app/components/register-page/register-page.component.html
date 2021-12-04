@@ -25,6 +25,12 @@
              formControlName="dateOfBirth">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="registrationForm.controls['dateOfBirth'].hasError('matDatepickerMin')">
+        DOB is more than 100 years of age
+      </mat-error>
+      <mat-error *ngIf="registrationForm.controls['dateOfBirth'].hasError('matDatepickerMax')">
+        DOB entered needs to be at least 18 years of age.
+      </mat-error>
     </mat-form-field>
   </p>
   <p>
@@ -47,7 +53,7 @@
   </p>
 
   <div class="button">
-    <button type="submit" color="primary" mat-button>
+    <button type="submit" color="primary" mat-button [disabled]="registrationForm.invalid">
       Confirm
     </button>
     <button type="button" color="primary" mat-button (click)="onCancel()">

@@ -1,4 +1,7 @@
-<h1 *ngIf="isNull">A prescriber has not assigned any prescriptions to your account yet!</h1>
+<div *ngIf="isNull">
+  <h1>A prescriber has not assigned any prescriptions to your account yet!</h1>
+  <h2>If you are expecting a prescription and not seeing it, please contact your prescriber.</h2>
+</div>
 <div *ngIf="!isNull">
   <h1>Your Active Prescriptions</h1>
   <table-component [dataSource]="tableData"

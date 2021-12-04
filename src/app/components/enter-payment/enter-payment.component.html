@@ -10,20 +10,17 @@
       <mat-form-field class="ngx-cc-form-field">
         <ngx-cc id="cardNum"
                 styleClass="card"
-                maxlength="16"
                 formControlName="cardNum">
         </ngx-cc>
+        <mat-error *ngIf="paymentForm.controls.cardNum.invalid">Card Number Must Be Valid.</mat-error>
       </mat-form-field>
     </tr>
     <tr>
       <td>Expiration Date:</td>
       <td>
         <mat-form-field appearance="fill">
-          <input id="expirationDate"
-                 type="month"
-                 formControlName="expirationDate"
-                 matInput
-                 placeholder="Expiration Date">
+          <ngx-cc-date formControlName="expirationDate" placeholder="MM/YY"></ngx-cc-date>
+          <mat-error *ngIf="paymentForm.controls.expirationDate.invalid">Expiration Date Must Be Valid.</mat-error>
         </mat-form-field>
       </td>
     </tr>
@@ -31,11 +28,8 @@
       <td>Card CVV:</td>
       <td>
         <mat-form-field appearance="fill">
-          <input id="pin"
-                 formControlName="cvv"
-                 matInput
-                 placeholder="cvv"
-                 maxlength="3">
+          <ngx-cc-cvv styleClass="maxCvvLength: 16" formControlName="cvv" placeholder="CVV"></ngx-cc-cvv>
+          <mat-error *ngIf="paymentForm.controls.cvv.invalid">Credit Card CVV Must Be Valid.</mat-error>
         </mat-form-field>
       </td>
     </tr>
@@ -43,7 +37,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
-  <button type="submit" color="primary" mat-button (click)="onSubmit()" [disabled]="!paymentForm.valid">
+  <button type="submit" color="primary" mat-button (click)="onSubmit()" [disabled]="paymentForm.invalid">
     Submit Order
   </button>
   <button mat-button color="primary" type="button" (click)="onCancel()">

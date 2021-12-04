@@ -1,5 +1,14 @@
 <h1>{{message}}</h1>
-<h2>{{userMessage}}</h2>
-<h2>{{prescriberMessage}}</h2>
+<div *ngIf="isLoggedIn != true">
+  <h2>{{userMessage}}</h2>
+  <h2>{{prescriberMessage}}</h2>
+  <h2 style="color: #ed8224; text-decoration: underline">{{notLoggedInRegisterMessage}}</h2>
+</div>
+<div *ngIf="isLoggedIn == true && userType == 'user'">
+  <h2>{{userMessageLoggedIn}}</h2>
+</div>
+<div *ngIf="isLoggedIn == true && userType == 'prescriber'">
+  <h2>{{prescriberMessageLoggedIn}}</h2>
+</div>
 <img alt="Pic of Pharmacy" src="assets/Pharmacy.jpg">
 
