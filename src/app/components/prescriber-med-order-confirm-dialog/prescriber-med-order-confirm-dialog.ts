@@ -5,6 +5,7 @@ import {MedicationsService} from "../../services/medications.service";
 import {UserInfoService} from "../../services/user-info.service";
 import {EncryptionService} from "../../services/encryption.service";
 import {PrescriptionService} from "../../services/prescription.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'medications-confirm-component',
@@ -18,6 +19,7 @@ export class PrescriberMedOrderConfirmDialog implements OnInit {
 
   prescriberFirstName = this.userInfoService.userInfo[0].First_Name
   prescriberLastName = this.userInfoService.userInfo[0].Last_Name
+  prescriberID = this.userInfoService.userInfo[0].ID
 
   choices = ["New", "Refill"];
 
@@ -80,7 +82,8 @@ export class PrescriberMedOrderConfirmDialog implements OnInit {
               private medService: MedicationsService,
               private userInfoService: UserInfoService,
               private encryptionService: EncryptionService,
-              private prescriptionService: PrescriptionService) {
+              private prescriptionService: PrescriptionService,
+              private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -89,6 +92,7 @@ export class PrescriberMedOrderConfirmDialog implements OnInit {
       medicationQuantity: new FormControl('', Validators.required),
       medicationFrequency: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
+      prescriberID: this.prescriberID,
       prescriberFirstName: this.prescriberFirstName,
       prescriberLastName: this.prescriberLastName,
       patientFirstName: new FormControl('', Validators.required),
@@ -97,7 +101,8 @@ export class PrescriberMedOrderConfirmDialog implements OnInit {
       patientCity: new FormControl('', Validators.required),
       patientState: new FormControl('', Validators.required),
       patientZipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(5)]),
-      patientDOB: new FormControl('', Validators.required)
+      patientDOB: new FormControl('', Validators.required),
+      datePrescribed: <string>this.datePipe.transform(Date(), 'yyyy-MM-dd')
     });
   }
 
@@ -108,6 +113,7 @@ export class PrescriberMedOrderConfirmDialog implements OnInit {
       medicationFrequency: this.encryptionService.encrypt(this.confirmationForm.value.medicationFrequency),
       type: this.encryptionService.encrypt(this.confirmationForm.value.type),
       prescriberFirstName: this.encryptionService.encrypt(this.prescriberFirstName),
+      prescriberID: this.encryptionService.encrypt(this.prescriberID.toString()),
       prescriberLastName: this.encryptionService.encrypt(this.prescriberLastName),
       patientFirstName: this.encryptionService.encrypt(this.confirmationForm.value.patientFirstName),
       patientLastName: this.encryptionService.encrypt(this.confirmationForm.value.patientLastName),
@@ -115,7 +121,8 @@ export class PrescriberMedOrderConfirmDialog implements OnInit {
       patientCity: this.encryptionService.encrypt(this.confirmationForm.value.patientCity),
       patientState: this.encryptionService.encrypt(this.confirmationForm.value.patientState),
       patientZipCode: this.encryptionService.encrypt(this.confirmationForm.value.patientZipCode),
-      patientDOB: this.encryptionService.encrypt(this.confirmationForm.value.patientDOB)
+      patientDOB: this.encryptionService.encrypt(this.confirmationForm.value.patientDOB),
+      datePrescribed: this.encryptionService.encrypt(this.confirmationForm.value.datePrescribed)
 
     });
     console.warn('Your order has been submitted', this.confirmationForm.value);

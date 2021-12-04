@@ -1,6 +1,7 @@
 <h1 *ngIf="isNull">You have not ordered anything yet!</h1>
 <div *ngIf="!isNull">
-  <h1>Your Order History</h1>
+  <h1 *ngIf="userProfileType == 'user'">Your Order History</h1>
+  <h1 *ngIf="userProfileType == 'prescriber'">Your Prescription Input History</h1>
   <table-component [dataSource]="tableData"
                    [displayedColumnTitles]="displayedColumnsTitles"
                    [displayedColumns]="displayedColumns">

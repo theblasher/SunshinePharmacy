@@ -29,7 +29,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     {path: '/prescriptions', label: 'Enter a Prescription'},
     {path: '/userinfo', label: 'User Info'},
     {path: '/orderhistory', label: 'Order History'},
-    {path: '/viewprescriptions', label: "View Active Prescriptions"}
+    {path: '/viewprescriptions', label: "View Active Prescriptions"},
+    {path: '/orderhistory', label: 'Who Have You Prescribed To?'}
   ];
   login = {path: '/login', label: 'Login'};
   logout = {path: '/home', label: 'Logout'};

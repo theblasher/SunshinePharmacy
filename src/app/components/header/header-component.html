@@ -55,5 +55,12 @@
      [active]="rla.isActive">
     {{link[3].label}}
   </a>
+  <a mat-tab-link
+     *ngIf="loggedIn && accountType == 'prescriber'"
+     [routerLink]="link[5].path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link[5].label}}
+  </a>
 </nav>
 

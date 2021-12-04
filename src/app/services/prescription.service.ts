@@ -7,6 +7,7 @@ import {UserInfoService} from "./user-info.service";
 import {EncryptionService} from "./encryption.service";
 import {MatDialog} from "@angular/material/dialog";
 import {CheckoutDialogComponent} from "../components/checkout-dialog/checkout-dialog.component";
+import {PrescriptionHistory} from "../models/prescription-history";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,9 @@ export class PrescriptionService {
   openedPrescription !: ActivePrescriptions;
   VIEW_CURRENT_PRESCRIPTION_SERVER_URL: string = Constants.SERVER_URL + "viewcurrentpres.php/";
   SUBMIT_PRESCRIPTION_SERVER_URL: string = Constants.SERVER_URL + "insertprescription.php/";
+  VIEW_SENT_PRESCRIPTIONS_SERVER_URL: string = Constants.SERVER_URL + "viewinsertedprescription.php/";
+
+  public prescriptions !: PrescriptionHistory[];
 
   constructor(private http: HttpClient,
               private snackbarService: SnackbarService,
@@ -65,6 +69,7 @@ export class PrescriptionService {
     prescriptionData.append('medicationQuantity', values.medicationQuantity);
     prescriptionData.append('medicationFrequency', values.medicationFrequency);
     prescriptionData.append('type', values.type);
+    prescriptionData.append('prescriberID', values.prescriberID);
     prescriptionData.append('prescriberFirstName', values.prescriberFirstName);
     prescriptionData.append('prescriberLastName', values.prescriberLastName);
     prescriptionData.append('patientFirstName', values.patientFirstName);
@@ -74,8 +79,30 @@ export class PrescriptionService {
     prescriptionData.append('patientState', values.patientState);
     prescriptionData.append('patientZipCode', values.patientZipCode);
     prescriptionData.append('patientDOB', values.patientDOB);
+    prescriptionData.append('datePrescribed', values.datePrescribed);
 
     await this.submitPrescription(prescriptionData);
+  }
+
+  public async getPrescriptionHistory(prescriberID: string) {
+    const prescriberIDData = new FormData();
+    prescriberIDData.append('prescriberID', prescriberID);
+    this.prescriptions = await this.http.post<PrescriptionHistory[]>(this.VIEW_SENT_PRESCRIPTIONS_SERVER_URL, prescriberIDData).toPromise();
+    if (this.prescriptions == null) {
+      return "null"
+    }
+    await this.decryptPrescriptionHistory(this.prescriptions);
+    return this.prescriptions;
+  }
+
+  public async decryptPrescriptionHistory(prescriptionHistory: PrescriptionHistory[]) {
+    for (let i = 0; i < prescriptionHistory.length; i++) {
+      this.prescriptions[i].Patient_First_Name = this.encryptionService.decrypt(this.prescriptions[i].Patient_First_Name);
+      this.prescriptions[i].Patient_Last_Name = this.encryptionService.decrypt(this.prescriptions[i].Patient_Last_Name);
+      this.prescriptions[i].Medication = this.encryptionService.decrypt(this.prescriptions[i].Medication);
+      this.prescriptions[i].Medication_Type = this.encryptionService.decrypt(this.prescriptions[i].Medication_Type);
+      this.prescriptions[i].Date_Prescribed = this.encryptionService.decrypt(this.prescriptions[i].Date_Prescribed);
+    }
   }
 
   public async submitPrescription(prescriptionData: FormData) {

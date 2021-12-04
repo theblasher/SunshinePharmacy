@@ -5,7 +5,7 @@
                    [displayedColumns]="displayedColumns">
   </table-component>
 </div>
-<div *ngIf="userProfileType == 'user'">
+<div *ngIf="userProfileType == 'user' || userProfileType == 'prescriber'">
   <h1>Your Profile</h1>
   <table-user-info-component [dataSource]="tableData"
                              [displayedColumnTitles]="displayedColumnsTitles"
