@@ -5,6 +5,7 @@ import {RegisterService} from "../../services/register.service";
 import {AuthenticationService} from "../../services/authentication.service";
 import {UserInfoService} from "../../services/user-info.service";
 import {DatePipe} from "@angular/common";
+import {SnackbarService} from "../../services/snackbar.service";
 
 @Component({
   templateUrl: './register-page.component.html',
@@ -31,7 +32,8 @@ export class RegisterPageComponent {
               private registerService: RegisterService,
               private authService: AuthenticationService,
               private userInfoService: UserInfoService,
-              public datePipe: DatePipe) {
+              public datePipe: DatePipe,
+              private snackbarService: SnackbarService) {
     let currentDay = new Date();
     this.maxDate = new Date(currentDay.getFullYear() - 18, currentDay.getMonth(), currentDay.getDate());
     this.minDate = new Date(currentDay.getFullYear() - 100, currentDay.getMonth(), currentDay.getDate());
@@ -67,6 +69,9 @@ export class RegisterPageComponent {
       console.warn('Your order has been submitted', this.registrationForm.value);
       await this.saveData(this.registrationForm.value);
       this.registrationForm.reset();
+    }
+    else {
+      this.snackbarService.openSnackBarPasswordsDoNotMatch();
     }
 
   }
